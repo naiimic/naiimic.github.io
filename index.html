@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Michelangelo Naim" />
+	<meta name="keywords" content="Michelangelo Naim, Deep Learning, Mathematics, Statistical Mechanics" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Official Homepage of Michelangelo Naim">
+	
+	<link rel="shortcut icon" href="favicons/favicon.ico">
+	<link rel="apple-touch-icon" href="favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+
+	<title>Michelangelo Naim</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+   <link rel="stylesheet" href="css/layouts/blog.css">
+   <script type="text/javascript" src="processing.js"></script>
+
+   <!-- Math part -->
+   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+   
+   <!-- Adding external html -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <!-- <script>
+		$(function(){
+			$("#trying").load("content/chess/chess.html"); 
+		});
+   </script> -->
+</head>
+
+<body>
+
+	<div id="mySidebar" class="sidebar">
+		<!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a> -->
+		<a onclick="closeNav()" href="#aboutme">
+			<i class="fas fa-house icon-color"></i> About me
+		</a>
+		<a onclick="closeNav()" href="#clementines">
+			<i class="fas fa-seedling icon-color"></i> Nature project: clementines
+		</a>
+		<a onclick="closeNav()" href="#hwm">
+			<i class="fas fa-calculator icon-color"></i> Math conjecture: high-water marks
+		</a>
+		<a onclick="closeNav()" href="#miceMaze">
+			<i class="fas fa-paw icon-color"></i> Mice maze game
+		</a>
+		<a onclick="closeNav()" href="#exercisesAI">
+			<i class="fas fa-brain icon-color"></i> AI: some exercises
+		</a>
+		<a onclick="closeNav()" href="#2048">
+			<i class="fas fa-puzzle-piece icon-color"></i> AI project: 2048
+		</a>
+		<a onclick="closeNav()" href="#chess">
+			<i class="fas fa-chess icon-color"></i> AI project: chess
+		</a>
+		<a onclick="closeNav()" href="#minesweeper">
+			<i class="fas fa-bomb icon-color"></i> AI project: minesweeper
+		</a>
+		<a onclick="closeNav()" href="#fantasyshares">
+			<i class="fas fa-futbol icon-color"></i> Fantasy shares
+		</a>
+		<a onclick="closeNav()" href="#poetry">
+			<i class="fas fa-paper-plane icon-color"></i> Poetry
+		</a>
+		<a onclick="closeNav()" href="#beliefs">
+			<i class="fas fa-lightbulb icon-color"></i> Beliefs
+		</a>
+	</div>
+
+	<div id="main">
+		<button class="openbtn" onclick="openNav()">☰ Table of contents</button>  
+	</div>
+
+	<script>
+		function openNav() {
+		  document.getElementById("mySidebar").style.width = "250px";
+		  document.getElementById("main").style.display = "none";
+		}
+		
+		function closeNav() {
+		  document.getElementById("mySidebar").style.width = "0";
+		  document.getElementById("main").style.display = "initial";
+		  setTimeout(function(){
+				history.replaceState({}, document.title, window.location.href.split('#')[0]);
+			}, 500);
+		}
+
+		document.onclick = function (e) {
+			if (e.target.id !== 'mySidebar'){
+				if (e.target.offsetParent && e.target.offsetParent.id !== 'mySidebar'){
+					closeNav();
+				}
+			}
+		}
+
+	</script>
+
+	<div id="layout" class="pure-g">
+		<div class="content pure-u-1">
+		<!-- <div class="content pure-u-1 pure-u-md-3-4"> smaller -->
+        	<div>
+          	<!-- A wrapper for all the blog posts -->
+				<div class="posts" id="aboutme">
+					<!-- A single blog post -->
+					<section class="post">
+						<header class="post-header">
+							<img class="post-avatar" alt="" height="90" width="90" src="avatar.jpg">
+							<h2 class="post-title">Michelangelo Naim</h2>
+						</header>
+						<div class="post-description">
+							<div class="info-box">
+								<!-- <br> -->
+								<blockquote>
+									<p><q><i>I'm still learning.</i></q> (<a href="https://en.wikipedia.org/wiki/Michelangelo">Michelangelo</a>, age 87)</p>
+								</blockquote>
+								<p>
+									Email: mnaim [at] mit [dot] edu
+								</p>
+								<p>
+									<a class="btn btnpurple" href="content/CV_michelangelonaim.pdf" target="_blank">CV</a>
+									<a class="btn btngreen" href="https://scholar.google.com/citations?user=hCEneNIAAAAJ&hl=en" target="_blank">Scholar</a>
+									<a class="btn btnred" href="https://github.com/naiimic" target="_blank">Github</a>
+									<a class="btn btnblue" href="https://www.linkedin.com/in/michelangelonaim/" target="_blank">LinkedIn</a>
+								</p>
+								<p>
+									I am an ICoN Postdoctoral Fellow at <a href="https://mcgovern.mit.edu">MIT</a> working with <a href="https://www.metaconscious.org/author/guangyu-robert-yang/">Guangyu Robert Yang</a> 
+									on deep learning to understand the brain. I want to model the brain with machine learning tools and develop brain inspired learning principles which could aid to increase the performance of neural networks.
+								</p>
+								<p>
+									I finished my Ph.D. at the <a href="https://www.weizmann.ac.il/pages/">Weizmann Institute of Science</a> under supervision of
+									<a href="https://www.weizmann.ac.il/brain-sciences/labs/tsodyks/home">Misha Tsodyks</a>. During my Ph.D. I spent some time at <a href="https://www.ias.edu/">Institute for Advanced Studies</a> and
+									at <a href="https://www.kitp.ucsb.edu">Kavli Institute for Theoretical Physics</a>.
+								</p>
+								<p>
+									Previously I obtained my 
+									Bachelor's and Master's degrees in Physics at <a href="https://www.uniroma1.it/en/pagina-strutturale/home">La Sapienza</a> 
+									under supervision of <a href="https://en.wikipedia.org/wiki/Giorgio_Parisi">Giorgio Parisi</a> and <a href="https://people.sissa.it/~ale/">Alessandro Treves</a> 
+									(<a href="https://www.sissa.it/">SISSA</a>). 
+								</p>
+								<p>
+									<i>This website doesn't describe my current research, but it's related to things I thought about and would like to share.</i>
+								</p>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<div class="posts" id="clementines">
+					<h1 class="content-subhead">Nature project: Clementines</h1>
+					<section class="post">
+					<img class="post-avatar" alt="" height="125" width="250" src="content/clementines/avatar.jpg">
+					<div class="post-description">
+						<p>
+							In Italy, during Christmas time, we play a game called <a href="https://en.wikipedia.org/wiki/Tombola_(game)">tombola</a> (similar to the game of bingo).
+							The player purchases cards based on a fixed cost decided at the start of the game. Each card contains 15 random numbers (between 1 and 90).
+							Whenever the dealer draws a number that is present on one or more of his cards, the player "covers" the corresponding number. 
+							Usually numbers are covered with beans, chickpeas, lentils or other material available after Christmas dinners such as <b>clementine skin</b>.
+							The ultimate goal of the game is to make "tombola", that is, to be the first player to cover all the numbers on one of his cards.
+						</p>
+						<p>
+							In 2014, while playing tombola, I asked myself my first research question: "How many segments are in a clementine?". 
+							Since that day, with the help of other people, I started collecting data for fun. In 2017, I had an excel sheet with <b>10898</b> different samples.
+						</p>
+						<p><img class="post-images" alt="" src="content/clementines/mandarini.png"></p>
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id = "hwm">
+					<h1 class="content-subhead">Math conjecture: High-water marks</h1>
+					<section class="post">
+					<div class="post-description">
+						<p>
+							While working on my Ph.D., I encountered an interesting problem related to the high-water marks. Given a sequence of values \({a_k}_{k=1}^n\), 
+							the high-water marks are the values at which the running maximum increases.
+							For example, given a sequence \([3,5,7,8,8,5,7,9,2,5]\) with running maxima \([3,5,7,8,8,8,9,9,9]\), 
+							the high-water marks are \([3,5,7,8,9]\). 
+							For every sequence \(a_k\) there is a number of high-water marks \({N}_{a_k}\).
+						</p>
+						<p>
+							If now we consider a set \(\sigma\) of all permutations of \(n\) numbers \((1, \dots, n)\) what is the analytical expression for the distribution of the number of high-water marks \(N_{a\in \sigma}\)?
+							For example, if \(n=3\), the distribution vector is \((\frac{2}{3!},\frac{3}{3!},\frac{1}{3!})\).
+						</p>
+						<p>
+							To solve this problem, consider the cycle representation of a permutation (including the trivial one-element cycles). 
+							We have a bijection of the symmetric group with itself that maps between numbers of cycles and numbers of high-water marks. 
+							Thus the distribution of the number of high-water marks is the distribution of the number of cycles. 
+							This is given by the <a href=" https://en.wikipedia.org/wiki/Stirling_numbers_of_the_first_kind">unsigned Stirling numbers of the first kind</a>,
+							which has a distribution 
+							$$ P_{s} (k;n) = \frac{|s(n;k)|}{n!} \, , $$
+							where 
+							$$\begin{cases}
+								s(n;1) = (n-1)! \\
+								s(n;n-1) = \frac{n(n-1)}{2} \\
+								s(n;n) = 1
+							\end{cases}$$
+						</p>
+					<p>
+						For the full proof (special thanks to <a href="https://staff.fnwi.uva.nl/j.zuiddam/">Jeroen Zuiddam</a>) 
+						you can click <a href="content/highwatermarks/hwm.pdf">here</a>.
+					</p>
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="miceMaze">
+					<h1 class="content-subhead">Mice maze game</h1>
+					<section class="post">
+					<img class="post-avatar" alt="" height="125" width="250" src="content/maze/avatar.jpg">
+					<div class="post-description">
+						<p>
+							Mazes have been a staple of animal psychology for well over 100 years.
+							<a href="https://elifesciences.org/articles/66175">Rosenberg et al. (2021)</a> presented a new approach to the study of learning and decision-making in mice. 
+							They give the animal access to a complex labyrinth and leave it undisturbed for a night while monitoring its movements. 
+							The result is a rich data set that reveals new aspects of learning and the structure of exploratory behavior.
+						</p>
+						<p>
+							Inspired by this paper, I decided to build a simple game (using GameMaker Studio2) that allows you to experience the same labyrinth as the mice did. 
+						</p>
+						<p>
+							<i><u>Instructions</u>: The goal of the game is to recover a treasure inside a maze and return to the starting room. The faster you go back, the higher the score. 
+							Use the arrow keys to move the character.
+							</i>
+						</p>
+						<p><a href="content/maze/index.html">PLAY!!</a> (browser only)</p>
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="exercisesAI">
+					<h1 class="content-subhead">AI: some exercises </h1>
+					<section class="post">
+					<img class="post-avatar-left" alt="" height="160" width="120" src="content/exercises/brain.jpg">
+					<div class="post-description">
+						<p>
+							Do you know how to code and you are passionate about AI? Did you try to play with it but lost motivation because "too hard"? 
+							Would like to better understand what exactly it is about and be able to apply it in your own research?
+							Great, this post is for you!!
+						</p>
+						<p>
+							Here is a small set of exercises that will walk you through some of the basics of AI.
+							These exercises will help you better familiarize with PyTorch, fully connected networks (FC), 
+							convolutional neural networks (CNN), graph neural networks (GNN), attention mechanism and reinforcement learning (RL).
+						</p>
+						<p><a href="https://github.com/naiimic/DeepLearningExercises">Have fun!!!</a></p>
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="2048">
+					<h1 class="content-subhead">AI project: 2048</h1>
+					<section class="post">
+					<div class="post-description">
+							<p>
+								<a href="https://en.wikipedia.org/wiki/2048_(video_game)">2048</a> is a game played on a plain 4x4 grid, with numbered tiles that slide when a player moves them using the four arrow keys.
+								Every turn, a new tile randomly appears in an empty spot on the board with a value of either 2 or 4.
+								Tiles slide as far as possible in the chosen direction until they are stopped by either another tile or the edge of the grid. 
+								If two tiles of the same number collide while moving, they will merge into a tile with the total value of the two tiles that collided.
+								The resulting tile cannot merge with another tile again in the same move. The game is won when a tile with a value of 2048 appears on the board. 
+								Players can continue beyond that to reach higher scores. When the player has no legal moves (there are no empty spaces and no adjacent tiles with the same value), the game ends.
+							</p>
+							<p>
+								The AI algorithm is an <a href="https://en.wikipedia.org/wiki/Evolutionary_algorithm">evolutionary algorithm</a>.
+								In 2048 you can get pretty far by just pressing random keys. Therefore, building an AI is much harder, since the difference between random movements and intelligence movements is very small. 
+								With the help of an algorithm, the AI will construct future game states and pick the one that has a higher score. 
+								The score is computed taking into account not only the highest number, but also adjacent blocks of the same number and having the highest number on the corner.
+							</p>
+							<p> 
+								Now look at the AI as it learns :)
+							</p>
+							<p> 
+								<canvas data-processing-sources="content/game2048/game2048.pde"></canvas>
+							</p>
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="chess">
+					<h1 class="content-subhead">AI project: Chess</h1>
+					<section class="post">
+					<img class="post-avatar-left" alt="" height="125" width="250" src="content/chess/avatar.jpg">
+					<div class="post-description">
+							<p>
+								AI has influenced the way in which chess games are played at the top level. In order to build a simple AI that can play chess 
+								we are going to use an algorithm called <a href="https://en.wikipedia.org/wiki/Minimax">minimax</a>.
+								In this algorithm there are two players, player A that tries to reach the highest value possible (max),
+								while player B is trying to reach the lowest value possible (min).
+							</p>
+							<p><img class="post-images" alt="" src="content/chess/minimax_alg.jpg"></p>
+							<p>
+								Let's consider a tree (figure above) where players alternate in making moves. Assuming that player B is perfectly logical and 
+								places the best move possible, then which move should you make first as player A? The trick is to work backward. 
+								If player B was at each intersection on the bottom layer, which direction would they choose? For the bottom left intersection they would choose 10 as it is the lower of the two.
+								That means the A player should consider the value of that intersection to be 10. We do this for all the bottom intersections, then we look one layer up and
+								think if player A was at each of these intersections which action would they take. We repeat this procedure until finally we will be left with two choices: either go left (-10) or right (-7). 
+								Therefore, to maximize their score, A should pick right!
+							</p>
+							<p>
+								Chess is just a big game of minimax. We can create a score giving value to all the pieces
+								(Pawn = 1, Knight = 3, Bishop = 3, Rook = 5, Queen = 9) and then adding all the white pieces and subtracting
+								all the black pieces. From white prespective, you are trying to reach a high schore, while black wants to reach
+								a low score. The AI needs to generate all the boards that are possible to reach from our current one within a certain
+								number of moves, then calculate the score and find the best possible move it can take.
+							</p>
+							<p> 
+								<!-- Now try to beat the AI that plans 3 moves ahead -->
+								<a href="content/chess/chess.html">TRY to win against the AI that plans 3 moves ahead!</a>
+							</p>
+							<!-- <div id="trying"></div> -->
+							<!-- <object data="content/chess/chess.html" class="object" width="300" height="250"></object> -->
+							<!-- <iframe src="content/chess/chess.html" class="object" width="300" height="250" scrolling="no"></iframe> -->
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="minesweeper">
+					<h1 class="content-subhead">AI project: Minesweeper</h1>
+					<section class="post">
+					<div class="post-description">
+							<p>
+								<a href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)">Minesweeper</a> is a game where mines are scattered throughout a board, which is divided into cells. 
+								Cells have three states: unopened, opened and flagged. 
+								An unopened cell is blank and clickable, while an opened cell is exposed. Flagged cells are those marked by the player to indicate a potential mine location.
+								A player selects a cell to open it. If a player opens a mined cell, the game ends. Otherwise, the opened cell displays either a number, indicating the number of mines diagonally and / or adjacent to it, 
+								or a blank tile, and all adjacent non-mined cells will automatically be opened. 
+							</p>
+							<p> 
+								The problem with minesweeper is that at "hard" is a game of luck. Even the best player can get stuck with a 50% of loosing.
+								This AI is not a neural network, rather some coding. First few moves are random, then it uses some logic:
+							</p>
+							<ol>
+								<li>
+									If a cell has the same amount of hidden squares around it as unflagged bombs remaining around it, then all the hidden cells are bombs.
+								</li>
+								<li>
+									If a cell has the same amount of flags around it as its number, then all the hidden cells are not bombs.
+								</li>
+								<li>
+									Using probability the AI is able to select cells that have a lower chance of being bombs. Let's deifine \(N_i\) as the number of bombs arrangements in which a bomb is placed on a cell \(i\),
+									and \(T\) as the total number of possible bomb arrangements in the remaining cells. Now we have that the probability of cell \(i\) to be a bomb is given by
+									$$ P_i = \frac{N_i}{T} \, . $$
+
+								</li>
+							</ol>
+							<p> 
+								Now look at the AI as it plays. If the AI wins the number of bombs increases by 1 (with a limit of 25 bombs).
+							</p>
+							<p> 
+								<canvas data-processing-sources="content/minesweeper/minesweeper.pde"></canvas>
+							</p>
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="fantasyshares">
+					<h1 class="content-subhead">Fantasy Shares</h1>
+					<section class="post">
+					<div class="post-description">
+						<p>Since Italy did not qualify for the World Cup 2022, I organized a simple game in order to follow the tournament having fun throughout all the 64 games.</p>
+						<p>The idea is pretty simple: each player has some credits that are used to buy "shares" of the different teams (1 share = 1 credit), without knowing which shares the other players own. Every time a team wins a match, it gets a certain number of points. These points are divided among the team shareholders, according to the number of shares they own.</p>
+						<p>To learn more about it and to see the results of the <b>225 players</b> that decided to play, you can click <a href="content/fantasyshares_game/fantasyshares_game.html">HERE</a> .</p>
+						<p><img class="post-images" alt="" src="content/fantasyshares_game/trophy.png"></p>				
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="poetry">
+					<h1 class="content-subhead">Poetry</h1>
+					<section class="post">
+					<div class="post-description">
+						<p>
+							Sometimes, I love to read and write poetry. Here are a few I would like to share:
+						</p>
+						<ol>
+							<li>
+								<p><a href="content/poetry/ani_rotze_tamid_enayim.pdf">I always want eyes</a> (in hebrew) - December 2019</p>
+							</li>
+							<li>
+								<p><a href="content/poetry/at_israel.pdf">You, Israel</a> (in hebrew) - May 2020</p>
+							</li>
+							<li>
+								<p><a href="content/poetry/estate.pdf">Estate</a> (in italian) / <a href="content/poetry/summer.pdf">Summer</a> (in english) - July 2022</p>
+							</li>
+						</ol>
+					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="beliefs">
+					<h1 class="content-subhead">Beliefs</h1>
+					<section class="post">
+					<div class="post-description">
+							<p>I believe in the axioms by <a href="https://en.wikipedia.org/wiki/Federico_Ardila" target="_blank">Federico Ardila</a>:</p>
+							<ul>
+								<li>
+								<p><b>Axiom 1.</b> Mathematical talent is distributed equally among different groups, irrespective of geographic, demographic, and economic boundaries.</p>
+								</li>
+								<li>
+								<p><b>Axiom 2.</b> Everyone can have joyful, meaningful, and empowering mathematical experiences.</p>
+								</li>
+								<li>
+								<p><b>Axiom 3.</b> Mathematics is a powerful, malleable tool that can be shaped and used differently by various communities to serve their needs.</p>
+								</li>
+								<li>
+								<p><b>Axiom 4.</b> Every student deserves to be treated with dignity and respect.</p>
+								</li>
+							</ul>
+					</div>
+					</section>
+				</div>	
+            </div>
+        </div>
+    </div>
+	<!-- <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="mnaim" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script> -->
+</body>
+</html>

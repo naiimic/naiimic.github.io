@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Michelangelo Naim" />
+	<meta name="keywords" content="Fantasy Shares" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Fantasy Shares, Official Page">
+	
+	<link rel="shortcut icon" href="https://naiimic.github.io/favicons/stocks-favicon.ico">
+	<link rel="apple-touch-icon" href="https://naiimic.github.io/favicons/stocks-apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/stocks-favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/stocks-favicon-32x32.png" sizes="32x32">
+
+	<title>Fantasy Shares</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+	<link rel="stylesheet" href="https://naiimic.github.io/css/layouts/blog.css">
+	
+	<script type="text/javascript" src="https://naiimic.github.io/processing.js"></script>
+
+	<!-- Math part -->
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	
+	<!-- Adding external html -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<script>
+
+		// RANKING
+
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+				if (xmlhttp.status == 200) {
+					var table_container = document.getElementById('table-container');
+					csv_string_to_table(xmlhttp.responseText, "single_player");
+				}
+			}
+		};
+		xmlhttp.open("GET", "https://naiimic.github.io/content/fantasyshares_game/analysis/players/player167_general.csv", true);
+		xmlhttp.send();
+
+		function csv_string_to_table(csv_string, element_to_insert_table) {
+
+			var table = document.createElement("table");
+			
+			table.display = 'block'
+			table.style.maxWidth = '400px';
+			table.style.marginLeft = 'auto';
+			table.style.marginRight = 'auto';
+			table.style.width = '100%';
+			table.style.height = 'auto';
+			table.style.border = '2px solid black';
+			
+			var rows = csv_string.trim().split(/\r?\n|\r/);
+			for (var i = 0; i < rows.length; i++) {
+				var cells = rows[i].split(",");
+				if (cells.length > 1) {
+					var row = table.insertRow(-1);
+					for (var j = 0; j < cells.length; j++) {
+						var cell = row.insertCell(-1);
+						cell.innerHTML = cells[j];
+					}
+				}
+			}
+			var dvCSV = document.getElementById(element_to_insert_table);
+			dvCSV.innerHTML = "";
+			dvCSV.appendChild(table);
+		}
+	</script>
+
+	<div id="layout" class="pure-g">
+		<div class="content pure-u-1">
+		<!-- <div class="content pure-u-1 pure-u-md-3-4"> smaller -->
+        	<div>
+          	<!-- A wrapper for all the blog posts -->
+				<div class="posts" id="update">
+					<h1 class="content-subhead">Fantasy Shares: Player 167</h1>
+					<section class="post">
+						<div class="post-description" id='time_update'>
+							<div class="post-description" id='single'>
+								<div id="single_player"></div>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<div class="posts" id="stats">
+					<h1 class="content-subhead">Fantasy Shares: Statistics</h1>
+					<section class="post">
+						<div class="post-description" id='time_update'>
+							<p>Performance of this team (in blue) against other teams (in grey).</p>
+							<p><img border="2" class="post-images" alt="" src="https://naiimic.github.io/content/fantasyshares_game/analysis/players/player167_general.png"></p>
+						</div>
+					</section>
+				</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
