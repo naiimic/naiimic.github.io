@@ -94,15 +94,15 @@
 			var elem = document.getElementById("languageButton");
 			if (elem.value=="Italian"){
 				italian_intro.style.display = "block";
-				italian_rules.style.display = "block";
+				// italian_rules.style.display = "block";
 				english_intro.style.display = "none";
-				english_rules.style.display = "none";
+				// english_rules.style.display = "none";
 				elem.value = "English";
 			} else{
 				italian_intro.style.display = "none";
-				italian_rules.style.display = "none";
+				// italian_rules.style.display = "none";
 				english_intro.style.display = "block";
-				english_rules.style.display = "block";
+				// english_rules.style.display = "block";
 				elem.value = "Italian";
 			} 
 		}
@@ -195,18 +195,18 @@
 				<input onclick="changeLanguage()" type="button" value="Italian" id="languageButton"></input>
 				<div class="post-description" id='english_intro'>
 					<p>Thank you for partecipating to <b>Fantasy Shares</b>.</p>
-					<p>Given the <a href='https://naiimic.github.io/content/fantasyshares/fantasyshares.html'>results</a> of the game and the World Cup matches (both in the group stage and in the playoffs), if you could rebuild a team, where would you invest your shares?</p>
+					<p>Given the <a href='https://naiimic.github.io/content/fantasyshares/fantasyshares.html'>results</a> of the game and the World Cup matches, if you could rebuild a team, where would you invest your shares?</p>
 					<p><i>Remember that the scores will be divided among all the shareholders.</i></p>
 				</div>
 				<div class="post-description" id='italian_intro' style="display:none">
 					<p>Grazie per aver partecipato a <b>Fantasy Shares</b>.</p>
-					<p>Dati i <a href='https://naiimic.github.io/content/fantasyshares/fantasyshares.html'>risultati</a> del gioco e del Mondiale (sia gruppi che playoff), se potessi rifarti una squadra, dove investiresti le tue shares?</p>
+					<p>Dati i <a href='https://naiimic.github.io/content/fantasyshares/fantasyshares.html'>risultati</a> del gioco e del Mondiale, se potessi rifarti una squadra, dove investiresti le tue shares?</p>
 					<p><i>Ricordati che i punteggi verrano divisi tra tutti gli investitori.</i></p>
 				</div>
 				</section>
 			</div>	
 
-			<div class="posts" id="rules">
+			<!-- <div class="posts" id="rules">
 				<h1 class="content-subhead">Rules</h1>
 				<section class="post">
 					<div class="post-description" id='english_rules'>
@@ -239,7 +239,7 @@
 						<p>Il numero di punti che un giocatore ottiene è uguale al <span style="color:blue">numero di punti che la squadra ha ottenuto</span> moltiplicato per <span style="color:green">il numero di azioni che possiede nella squadre</span>, diviso per <span style="color:red">il numero totale di azioni nella squadra</span>.</p>
 				</div>
 				</section>
-			</div>	
+			</div>	 -->
 
 			<div class="posts" id="teams">
 				<h1 class="content-subhead">Fantasy Shares: Rebuild your squad</h1>
