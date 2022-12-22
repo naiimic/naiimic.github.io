@@ -1,0 +1,34 @@
+TEAM            FIFA RANKING
+------------------------------
+BRAZIL          1
+BELGIUM         2
+ARGENTINA       3
+FRANCE          4
+ENGLAND         5
+SPAIN           7
+NETHERLANDS     8
+PORTUGAL        9
+DENMARK         10
+GERMANY         11
+CROATIA         12
+MEXICO          13
+URUGUAY         14
+SWITZERLAND     15
+USA             16
+SENEGAL         18
+WALES           19
+IRAN            20
+SERBIA          21
+MOROCCO         22
+JAPAN           24
+POLAND          26
+SOUTH KOREA     28
+TUNISIA         30
+COSTA RICA      31
+AUSTRALIA       38
+CANADA          41
+CAMEROON        43
+ECUADOR         44
+QATAR           50
+SAUDI ARABIA    51
+GHANA           61

@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Michelangelo Naim" />
+	<meta name="keywords" content="Fantasy Shares" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Fantasy Shares, Official Page">
+	
+	<link rel="shortcut icon" href="https://naiimic.github.io/favicons/stocks-favicon.ico">
+	<link rel="apple-touch-icon" href="https://naiimic.github.io/favicons/stocks-apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/stocks-favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/stocks-favicon-32x32.png" sizes="32x32">
+
+	<title>Fantasy Shares</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+	<link rel="stylesheet" href="https://naiimic.github.io/css/layouts/blog.css">
+
+	<!-- Python?? -->
+	<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+	
+	<script type="text/javascript" src="https://naiimic.github.io/processing.js"></script>
+
+	<!-- Math part -->
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	
+	<!-- Adding external html -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+		function checkform() {
+			
+			var arr = [];
+			if (document.world_cup_players.share1.value != ''){
+				arr.push(document.world_cup_players.share1.value)
+			}
+			if (document.world_cup_players.share2.value != ''){
+				arr.push(document.world_cup_players.share2.value)
+			}
+			if (document.world_cup_players.share3.value != ''){
+				arr.push(document.world_cup_players.share3.value)
+			}
+			if (document.world_cup_players.share4.value != ''){
+				arr.push(document.world_cup_players.share4.value)
+			}
+			if (document.world_cup_players.share5.value != ''){
+				arr.push(document.world_cup_players.share5.value)
+			}
+			if (document.world_cup_players.share6.value != ''){
+				arr.push(document.world_cup_players.share6.value)
+			}
+			if (document.world_cup_players.share7.value != ''){
+				arr.push(document.world_cup_players.share7.value)
+			}
+			if (document.world_cup_players.share8.value != ''){
+				arr.push(document.world_cup_players.share8.value)
+			}
+			if (document.world_cup_players.share9.value != ''){
+				arr.push(document.world_cup_players.share9.value)
+			}
+			if (document.world_cup_players.share10.value != ''){
+				arr.push(document.world_cup_players.share10.value)
+			}
+			var occurrences = {};
+			for (var i = 0, j = arr.length; i < j; i++) {
+				occurrences[arr[i]] = (occurrences[arr[i]] || 0) + 1;
+			}
+
+			var threshold_shares = 4;
+			var more_than_four = false;
+			
+			for (var i = 0; i < arr.length; ++i) {
+					if (occurrences[arr[i]] > threshold_shares){
+						more_than_four = true;
+					}
+			}
+
+			if(more_than_four == true){
+				alert("Please make sure to select only 4 shares in any one team!!!");
+				return false;
+			} else if(document.world_cup_players.share1.value == "" || document.world_cup_players.share2.value == "" || document.world_cup_players.share3.value == "" || document.world_cup_players.share4.value == "" || document.world_cup_players.share5.value == "" || document.world_cup_players.share6.value == "" || document.world_cup_players.share7.value == "" || document.world_cup_players.share8.value == "" || document.world_cup_players.share9.value == "" || document.world_cup_players.share10.value == "" ||document.world_cup_players.name.value == "" || document.world_cup_players.email.value == "") {
+				alert("Please make sure to write your name, add a valid email, select all your teams.");
+				return false;
+			} else {
+				document.world_cup_players.submit();
+			}
+		}
+	</script>
+
+	<script>
+		function changeLanguage(){
+			var elem = document.getElementById("languageButton");
+			if (elem.value=="Italian"){
+				italian_intro.style.display = "block";
+				italian_rules.style.display = "block";
+				english_intro.style.display = "none";
+				english_rules.style.display = "none";
+				elem.value = "English";
+			} else{
+				italian_intro.style.display = "none";
+				italian_rules.style.display = "none";
+				english_intro.style.display = "block";
+				english_rules.style.display = "block";
+				elem.value = "Italian";
+			} 
+		}
+	</script>
+
+	<script>
+		function callSave(select) {
+			var parent = select.parentNode;
+			
+			var usedValues = {};
+			var arr = [];
+			if (document.world_cup_players.share1.value != ''){
+				arr.push(document.world_cup_players.share1.value)
+			}
+			if (document.world_cup_players.share2.value != ''){
+				arr.push(document.world_cup_players.share2.value)
+			}
+			if (document.world_cup_players.share3.value != ''){
+				arr.push(document.world_cup_players.share3.value)
+			}
+			if (document.world_cup_players.share4.value != ''){
+				arr.push(document.world_cup_players.share4.value)
+			}
+			if (document.world_cup_players.share5.value != ''){
+				arr.push(document.world_cup_players.share5.value)
+			}
+			if (document.world_cup_players.share6.value != ''){
+				arr.push(document.world_cup_players.share6.value)
+			}
+			if (document.world_cup_players.share7.value != ''){
+				arr.push(document.world_cup_players.share7.value)
+			}
+			if (document.world_cup_players.share8.value != ''){
+				arr.push(document.world_cup_players.share8.value)
+			}
+			if (document.world_cup_players.share9.value != ''){
+				arr.push(document.world_cup_players.share9.value)
+			}
+			if (document.world_cup_players.share10.value != ''){
+				arr.push(document.world_cup_players.share10.value)
+			}
+			var occurrences = {};
+			for (var i = 0, j = arr.length; i < j; i++) {
+				occurrences[arr[i]] = (occurrences[arr[i]] || 0) + 1;
+			}
+
+			var threshold_shares = 4;
+			
+			for (var i = 0; i < parent.children.length; ++i) {
+				if (parent.children[i].value != '') {
+					if (occurrences[parent.children[i].value] == threshold_shares){
+						usedValues[ parent.children[i].value ] = parent.children[i];
+					}
+				}
+			}
+			
+			for (var i = 0; i < parent.children.length; ++i) {
+				var s = parent.children[i];
+				for (var j = 0; j < s.children.length; ++j) {
+					var o = s.children[j];
+					var p = o.value == '' ? undefined : usedValues[o.value];
+					if (p == undefined || p == s) {
+						o.style.display = '';
+						//o.disabled = false;
+					}
+					else {
+						o.style.display = 'none';
+						//o.disabled = true;
+					}
+				}
+			}
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<div id="layout" class="pure-g">
+		<div class="content pure-u-1">
+		<!-- <div class="content pure-u-1 pure-u-md-3-4"> smaller -->
+        	<div>
+          	<!-- A wrapper for all the blog posts -->
+
+			<div class="posts" id="intro">
+				<h1 class="content-subhead"><b>Fantasy Shares</b></h1>
+				<section class="post">
+				<p>Email: mnaim [at] mit [dot] edu</p>
+				<hr>
+				<input onclick="changeLanguage()" type="button" value="Italian" id="languageButton"></input>
+				<div class="post-description" id='english_intro'>
+					<p>Thank you for partecipating to <b>Fantasy Shares</b>.</p>
+					<p>Given the <a href='https://naiimic.github.io/content/fantasyshares/fantasyshares.html'>results</a> of the game and the World Cup matches (both in the group stage and in the playoffs), if you could rebuild a team, where would you invest your shares?</p>
+					<p><i>Remember that the scores will be divided among all the shareholders.</i></p>
+				</div>
+				<div class="post-description" id='italian_intro' style="display:none">
+					<p>Grazie per aver partecipato a <b>Fantasy Shares</b>.</p>
+					<p>Dati i <a href='https://naiimic.github.io/content/fantasyshares/fantasyshares.html'>risultati</a> del gioco e del Mondiale (sia gruppi che playoff), se potessi rifarti una squadra, dove investiresti le tue shares?</p>
+					<p><i>Ricordati che i punteggi verrano divisi tra tutti gli investitori.</i></p>
+				</div>
+				</section>
+			</div>	
+
+			<div class="posts" id="rules">
+				<h1 class="content-subhead">Rules</h1>
+				<section class="post">
+					<div class="post-description" id='english_rules'>
+						<p>You have <b>10 credits</b> which must be allocated among the teams. The only restriction is that you can take at most <b>4 shares in any one team</b>.</p>
+						<p>The number of points a team gets depends on the stage of the tournament:</p>
+						<ul>
+							<li>\(1\) for winning the group stage matches (and \(0.5\) for a draw);</li>
+							<li>\(1\) for getting into to the playoff stage as first (and \(0.5\) as second);</li>
+							<li>\(2\) for winning the round of 16;</li>
+							<li>\(4\) for winning the quarter finals;</li>
+							<li>\(8\) for winning the semi finals;</li>
+							<li>\(4\) for winning the third place final;</li>
+							<li>\(16\) for winning the final.</li>
+						</ul>
+						<p>For every team a player has invested in (owns shares of) the player will get a number of points equal to <span style="color:blue">the number of points the team got</span> times <span style="color:green">the number of shares they own in the team</span>, divided by <span style="color:red">the total number of shares in the team</span>.</p>
+					</div>
+					<div class="post-description" id='italian_rules' style="display:none">
+						<p></p>
+						<p>Hai <b>10 crediti</b> che devono essere distribuiti tra le squadre. L'unica restrizione è che puoi prendere al massimo <b>4 azioni in una squadra</b>.</p>
+						<p>Il numero di punti che una squadra ottiene dipende dalla fase del torneo:</p>
+						<ul>
+							<li>\(1\) vincendo le partite della fase a gironi (e \(0.5\) per il pareggio);</li>
+							<li>\(1\) per l'accesso ai playoff come prima (e \(0.5\) come seconda);</li>
+							<li>\(2\) vincendo gli ottavi di finale;</li>
+							<li>\(4\) vincendo i quarti di finale;</li>
+							<li>\(8\) vincendo le semifinali;</li>
+							<li>\(4\) vincendo la finale del terzo posto;</li>
+							<li>\(16\) vincendo la finale.</li>
+						</ul>
+						<p>Il numero di punti che un giocatore ottiene è uguale al <span style="color:blue">numero di punti che la squadra ha ottenuto</span> moltiplicato per <span style="color:green">il numero di azioni che possiede nella squadre</span>, diviso per <span style="color:red">il numero totale di azioni nella squadra</span>.</p>
+				</div>
+				</section>
+			</div>	
+
+			<div class="posts" id="teams">
+				<h1 class="content-subhead">Fantasy Shares: Rebuild your squad</h1>
+				<section class="post">
+				<div class="post-description">
+					<form action="https://formspree.io/f/xknawvzg" method="POST" name="world_cup_players">
+						<label for="name">Full name</label>
+						<input type="text" name="name" id="name">
+						<label for="email">Email (it won't be displayed)</label>
+						<input type="email" name="email" id="email">
+						<div>
+						<label for="share1">Share 1:</label>
+						<select id="share1" name="share1" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share2">Share 2:</label>
+						<select id="share2" name="share2" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share3">Share 3:</label>
+						<select id="share3" name="share3" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share4">Share 4:</label>
+						<select id="share4" name="share4" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share5">Share 5:</label>
+						<select id="share5" name="share5" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share6">Share 6:</label>
+						<select id="share6" name="share6" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share7">Share 7:</label>
+						<select id="share7" name="share7" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share8">Share 8:</label>
+						<select id="share8" name="share8" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share9">Share 9:</label>
+						<select id="share9" name="share9" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						<label for="share10">Share 10:</label>
+						<select id="share10" name="share10" onChange="callSave(this)">
+							<option value = ""></option>
+							<option value='ARGENTINA'>ARGENTINA</option>
+							<option value='AUSTRALIA'>AUSTRALIA</option>
+							<option value='BELGIUM'>BELGIUM</option>
+							<option value='BRAZIL'>BRAZIL</option>
+							<option value='CAMEROON'>CAMEROON</option>
+							<option value='CANADA'>CANADA</option>
+							<option value='COSTA RICA'>COSTA RICA</option>
+							<option value='CROATIA'>CROATIA</option>
+							<option value='DENMARK'>DENMARK</option>
+							<option value='ECUADOR'>ECUADOR</option>
+							<option value='ENGLAND'>ENGLAND</option>
+							<option value='FRANCE'>FRANCE</option>
+							<option value='GERMANY'>GERMANY</option>
+							<option value='GHANA'>GHANA</option>
+							<option value='IRAN'>IRAN</option>
+							<option value='JAPAN'>JAPAN</option>
+							<option value='MEXICO'>MEXICO</option>
+							<option value='MOROCCO'>MOROCCO</option>
+							<option value='NETHERLANDS'>NETHERLANDS</option>
+							<option value='POLAND'>POLAND</option>
+							<option value='PORTUGAL'>PORTUGAL</option>
+							<option value='QATAR'>QATAR</option>
+							<option value='SAUDI ARABIA'>SAUDI ARABIA</option>
+							<option value='SENEGAL'>SENEGAL</option>
+							<option value='SERBIA'>SERBIA</option>
+							<option value='SOUTH KOREA'>SOUTH KOREA</option>
+							<option value='SPAIN'>SPAIN</option>
+							<option value='SWITZERLAND'>SWITZERLAND</option>
+							<option value='TUNISIA'>TUNISIA</option>
+							<option value='USA'>USA</option>
+							<option value='URUGUAY'>URUGUAY</option>
+							<option value='WALES'>WALES</option>
+						</select>
+						</div>
+						<br>
+						<label><input type="submit" class="button" value="Continue" onclick="return checkform()"></label>
+					</form>
+				</div>
+				</section>
+			</div>	
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- jQuery(function ($) {        
+	$('form').bind('submit', function () {
+		$(this).find(':input').prop('disabled', false);
+	});
+}); -->

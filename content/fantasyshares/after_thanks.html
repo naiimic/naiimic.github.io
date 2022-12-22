@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Michelangelo Naim" />
+	<meta name="keywords" content="Fantasy Shares" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Fantasy Shares, Official Page">
+	
+	<link rel="shortcut icon" href="https://naiimic.github.io/favicons/stocks-favicon.ico">
+	<link rel="apple-touch-icon" href="https://naiimic.github.io/favicons/stocks-apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/stocks-favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/stocks-favicon-32x32.png" sizes="32x32">
+
+	<title>Fantasy Shares</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+	<link rel="stylesheet" href="https://naiimic.github.io/css/layouts/blog.css">
+
+	<!-- Python?? -->
+	<!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
+	
+	<script type="text/javascript" src="https://naiimic.github.io/processing.js"></script>
+
+	<!-- Math part -->
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+	
+	<!-- Adding external html -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+		function changeLanguage(){
+			var elem = document.getElementById("languageButton");
+			if (elem.value=="Italian"){
+				italian_thanks.style.display = "block";
+				english_thanks.style.display = "none";
+				elem.value = "English";
+			} else{
+				italian_thanks.style.display = "none";
+				english_thanks.style.display = "block";
+				elem.value = "Italian";
+			} 
+		}
+	</script>
+</head>
+
+<body>
+
+	<div id="layout" class="pure-g">
+		<div class="content pure-u-1">
+		<!-- <div class="content pure-u-1 pure-u-md-3-4"> smaller -->
+        	<div>
+          	<!-- A wrapper for all the blog posts -->
+				<div class="posts" id="rules">
+					<h1 class="content-subhead">Fantasy Shares: Confirmation page</h1>
+					<section class="post">
+					<p>Email: mnaim [at] mit [dot] edu</p>
+					<hr>
+					<input onclick="changeLanguage()" type="button" value="Italian" id="languageButton"></input>
+					<div class="post-description" id='english_thanks'>
+						<p>Thank you!</p>
+						<p>See you for Euro 2024!</p>
+						<p><img class="post-images" alt="" src="trophy.png"></p>
+					</div>
+					<div class="post-description" id='italian_thanks' style="display:none">
+						<p>Grazie! 
+						<p>Ci vediamo a Euro 2024!</p>
+						<p><img class="post-images" alt="" src="trophy.png"></p>
+					</div>
+					</section>
+				</div>	
+            </div>
+        </div>
+    </div>
+	<!-- <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="mnaim" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script> -->
+</body>
+</html>
