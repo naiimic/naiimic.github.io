@@ -181,6 +181,53 @@
 
 <body>
 
+	<script>
+
+		// RANKING
+
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+				if (xmlhttp.status == 200) {
+					var table_container = document.getElementById('table-container');
+					csv_string_to_table(xmlhttp.responseText, "points");
+				}
+			}
+		};
+		xmlhttp.open("GET", "https://naiimic.github.io/content/fantasyshares_game/analysis/points.csv", true);
+		xmlhttp.send();
+
+		function csv_string_to_table(csv_string, element_to_insert_table) {
+
+			var table = document.createElement("table");
+
+			table.display = 'block';
+			table.style.maxWidth = '400px';
+			table.style.marginLeft = 'auto';
+			table.style.marginRight = 'auto';
+			table.style.width = '100%';
+			table.style.height = 'auto';
+			table.style.border = '2px solid black';
+
+			var rows = csv_string.trim().split(/\r?\n|\r/);
+			for (var i = 0; i < rows.length; i++) {
+				var cells = rows[i].split(",");
+				if (cells.length > 1) {
+					var row = table.insertRow(-1);
+					for (var j = 0; j < cells.length; j++) {
+						var cell = row.insertCell(-1);
+						cell.innerHTML = cells[j];
+					}
+				}
+			}
+
+			var dvCSV = document.getElementById(element_to_insert_table);
+			dvCSV.innerHTML = "";
+			dvCSV.appendChild(table);
+		}
+	</script>
+
+
 	<div id="layout" class="pure-g">
 		<div class="content pure-u-1">
 		<!-- <div class="content pure-u-1 pure-u-md-3-4"> smaller -->
@@ -211,9 +258,10 @@
 					<!-- <p>Grazie per aver partecipato a <b>Fantasy Shares</b> (<a href='https://naiimic.github.io/content/fantasyshares/fantasyshares.html'>risultati</a>).</p> -->
 					<p>Se facessimo un gioco differente, <b>(1) assumendo che tutti possano rifare le proprie scelte</b> (<u>ovvero cambierà il numero di shares totali per squadra</u>) e <b>(2) conoscendo i punti che ogni squadra ha ottenuto</b>, dove investiresti le tue shares per vincere?</p>
 					<p><i><span style="color:red">Ricordati che il tuo punteggio dipende anche dalle scelte degli altri giocatori.</span> Per esempio, possiedi \(1\) azione del Giappone e il numero totale di azioni per il Giappone sarà \(9\). Il Giappone ha \(3\) punti. I punti che ottieni dal Giappone sono \(\frac{1 \cdot 3}{9} = 0.333\).</i></p>
-					<fieldset>
+					<div id="points" style = 'height: 400px; overflow:scroll;'></div>
+					<!-- <fieldset>
 						<a href='https://naiimic.github.io/content/fantasyshares_game/analysis/points.txt'>PUNTEGGI PER SQUADRA</a>
-					</fieldset>
+					</fieldset> -->
 				</div>
 				</section>
 			</div>
