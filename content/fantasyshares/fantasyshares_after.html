@@ -78,17 +78,41 @@
 		xmlhttp.open("GET", "https://naiimic.github.io/content/fantasyshares/analysis/general_ranking_after.csv", true);
 		xmlhttp.send();
 
+		var xmlhttp1 = new XMLHttpRequest();
+		xmlhttp1.onreadystatechange = function() {
+			if (xmlhttp1.readyState == XMLHttpRequest.DONE) {
+				if (xmlhttp1.status == 200) {
+					var table_container = document.getElementById('table-container');
+					csv_string_to_table(xmlhttp1.responseText, "general_contribution_after");
+				}
+			}
+		};
+		xmlhttp1.open("GET", "https://naiimic.github.io/content/fantasyshares/analysis/general_contribution_after.csv", true);
+		xmlhttp1.send();
+
 		var xmlhttp2 = new XMLHttpRequest();
 		xmlhttp2.onreadystatechange = function() {
 			if (xmlhttp2.readyState == XMLHttpRequest.DONE) {
 				if (xmlhttp2.status == 200) {
 					var table_container = document.getElementById('table-container');
-					csv_string_to_table(xmlhttp2.responseText, "general_contribution_after");
+					csv_string_to_table(xmlhttp2.responseText, "points");
 				}
 			}
 		};
-		xmlhttp2.open("GET", "https://naiimic.github.io/content/fantasyshares/analysis/general_contribution_after.csv", true);
+		xmlhttp2.open("GET", "https://naiimic.github.io/content/fantasyshares/analysis/points.csv", true);
 		xmlhttp2.send();
+
+		var xmlhttp3 = new XMLHttpRequest();
+		xmlhttp3.onreadystatechange = function() {
+			if (xmlhttp3.readyState == XMLHttpRequest.DONE) {
+				if (xmlhttp3.status == 200) {
+					var table_container = document.getElementById('table-container');
+					csv_string_to_table(xmlhttp3.responseText, "points1");
+				}
+			}
+		};
+		xmlhttp3.open("GET", "https://naiimic.github.io/content/fantasyshares/analysis/points.csv", true);
+		xmlhttp3.send();
 
 		function csv_string_to_table(csv_string, element_to_insert_table) {
 
@@ -117,13 +141,6 @@
 			var dvCSV = document.getElementById(element_to_insert_table);
 			dvCSV.innerHTML = "";
 			dvCSV.appendChild(table);
-
-			if (element_to_insert_table == 'betting_ranking'){
-				var tr = table.getElementsByTagName("tr");
-				document.getElementById("first_place").innerHTML = Math.round((tr.length-1)*0.5*9)
-				document.getElementById("second_place").innerHTML = Math.round((tr.length-1)*0.3*9)
-				document.getElementById("third_place").innerHTML = Math.round((tr.length-1)*0.2*9)
-			}
 		}
 	</script>
 
