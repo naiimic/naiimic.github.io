@@ -131,6 +131,30 @@
 		xmlhttp3.open("GET", "https://naiimic.github.io/content/fantasyshares_game/analysis/general_contribution_after.csv", true);
 		xmlhttp3.send();
 
+		var xmlhttp4 = new XMLHttpRequest();
+		xmlhttp4.onreadystatechange = function() {
+			if (xmlhttp4.readyState == XMLHttpRequest.DONE) {
+				if (xmlhttp4.status == 200) {
+					var table_container = document.getElementById('table-container');
+					csv_string_to_table(xmlhttp4.responseText, "points");
+				}
+			}
+		};
+		xmlhttp4.open("GET", "https://naiimic.github.io/content/fantasyshares_game/analysis/points.csv", true);
+		xmlhttp4.send();
+
+		var xmlhttp5 = new XMLHttpRequest();
+		xmlhttp5.onreadystatechange = function() {
+			if (xmlhttp5.readyState == XMLHttpRequest.DONE) {
+				if (xmlhttp5.status == 200) {
+					var table_container = document.getElementById('table-container');
+					csv_string_to_table(xmlhttp5.responseText, "points1");
+				}
+			}
+		};
+		xmlhttp5.open("GET", "https://naiimic.github.io/content/fantasyshares_game/analysis/points.csv", true);
+		xmlhttp5.send();
+
 		function csv_string_to_table(csv_string, element_to_insert_table) {
 
 			var table = document.createElement("table");
