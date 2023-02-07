@@ -44,15 +44,32 @@
 			} 
 		}
 
+		function changeImage1(){
+			var elem = document.getElementById("imagesButton1");
+			if (elem.value=="Show table"){
+				general_image_shares_after.style.display = "none";
+				general_image_after.style.display = "block";
+				elem.value = "Show image";
+			} else{
+				general_image_shares_after.style.display = "block";
+				general_image_after.style.display = "none";
+				elem.value = "Show table";
+			} 
+		}
+
 		function changeLanguage(){
 			var elem = document.getElementById("languageButton");
 			if (elem.value=="Italian"){
 				italian_rules.style.display = "block";
 				english_rules.style.display = "none";
+				italian_rules_after.style.display = "block";
+				english_rules_after.style.display = "none";
 				elem.value = "English";
 			} else{
 				italian_rules.style.display = "none";
 				english_rules.style.display = "block";
+				italian_rules_after.style.display = "none";
+				english_rules_after.style.display = "block";
 				elem.value = "Italian";
 			} 
 		}
@@ -89,6 +106,30 @@
 		};
 		xmlhttp2.open("GET", "https://naiimic.github.io/content/fantasyshares_game/analysis/general_contribution.csv", true);
 		xmlhttp2.send();
+
+		var xmlhttp1 = new XMLHttpRequest();
+		xmlhttp1.onreadystatechange = function() {
+			if (xmlhttp1.readyState == XMLHttpRequest.DONE) {
+				if (xmlhttp1.status == 200) {
+					var table_container = document.getElementById('table-container');
+					csv_string_to_table(xmlhttp1.responseText, "general_ranking_after");
+				}
+			}
+		};
+		xmlhttp1.open("GET", "https://naiimic.github.io/content/fantasyshares_game/analysis/general_ranking_after.csv", true);
+		xmlhttp1.send();
+
+		var xmlhttp3 = new XMLHttpRequest();
+		xmlhttp3.onreadystatechange = function() {
+			if (xmlhttp3.readyState == XMLHttpRequest.DONE) {
+				if (xmlhttp3.status == 200) {
+					var table_container = document.getElementById('table-container');
+					csv_string_to_table(xmlhttp3.responseText, "general_contribution_after");
+				}
+			}
+		};
+		xmlhttp3.open("GET", "https://naiimic.github.io/content/fantasyshares_game/analysis/general_contribution_after.csv", true);
+		xmlhttp3.send();
 
 		function csv_string_to_table(csv_string, element_to_insert_table) {
 
@@ -129,7 +170,7 @@
 				<section class="post">
 					<div class="post-description" id='time_update'>
 						<fieldset>
-							<p>Last updated on December 18th at 1.20 pm.</p>
+							<!-- <p>Last updated on December 18th at 1.20 pm.</p> -->
 							<p><a href='https://naiimic.github.io/content/fantasyshares_game/analysis/scores.txt'>WORLD CUP SCORES</a></p>
 						</fieldset>
 					</div>
@@ -226,6 +267,68 @@
 				</section>
 			</div> -->
 
+			<div class="posts" id="rules_after">
+				<h1 class="content-subhead">Game Theory Question</h1>
+				<section class="post">
+					<div class="post-description" id='english_rules_after'>
+						<p>After the World Cup, I sent a survey asking the participants to play a different game with the following rules:</p>
+						<ol>
+							<li>You have <b>10 shares</b> to invest on the World Cup teams (you can take at most <b>4 shares in any one team</b>).</li>
+							<li>The points per team are fixed and shown in the table below.</li>
+							<li>The player will get a number of points equal to <span style="color:blue">the number of points the team has</span>, times <span style="color:green">the number of shares they own in the team</span>, divided by <span style="color:red">the total number of shares that all the players invested in the team</span>.</li>
+						</ol>
+						<p>where would you invest your shares in order to win?</p>
+						<div id="points" style = 'height: 400px; overflow:scroll;'></div>
+						<br>
+						<fieldset>
+							<p><i><span style="color:red">Remember that your score depends also on other players' choices.</span> For example, you own \(1\) share of Japan and the total number of shares for Japan will be \(9\). Japan has \(3\) points. The points you get from Japan are \(\frac{1 \cdot 3}{9} = 0.333\).</i></p>
+						</fieldset>
+					</div>
+					<div class="post-description" id='italian_rules_after' style="display:none">
+						<p>Dopo il Mondiale, ho chiesto ai partecipanti di giocare ad un altro gioco con le seguenti regole:</p>
+						<ol>
+							<li>Hai <b>10 azioni</b> da investire su squadre del Mondiale (puoi prendere al massimo <b>4 azioni in una squadra</b>).</li>
+							<li>Il valore di ogni squadra è fisso e mostrato nella tabella sottostante.</li>
+							<li>Il numero di punti che un giocatore ottiene è uguale al <span style="color:blue">numero di punti che la squadra ha</span>, moltiplicato per <span style="color:green">il numero di azioni che possiede nella squadra</span>, diviso per <span style="color:red">il numero totale di azioni che tutti i giocatori hanno investito sulla squadra</span>.</li>
+						</ol>
+						<p>dove investiresti le tue shares per vincere?</p>
+						<div id="points1" style = 'height: 400px; overflow:scroll;'></div>
+						<br>
+						<fieldset>
+							<p><i><span style="color:red">Ricordati che il tuo punteggio dipende anche dalle scelte degli altri giocatori.</span> Per esempio, possiedi \(1\) azione del Giappone e il numero totale di azioni per il Giappone sarà \(9\). Il Giappone ha \(3\) punti. I punti che ottieni dal Giappone sono \(\frac{1 \cdot 3}{9} = 0.333\).</i></p>
+						</fieldset>
+					</div>
+				</section>
+			</div>	
+
+			<div class="posts" id="ranking_after">
+				<h1 class="content-subhead">Results - Game Theory</h1>
+				<section class="post">
+					<div class="post-description" id='general_people_after'>
+						<p><b>General League standings.</b> Click on a player's name to see their teams.</p> 
+						<p><u>Each value has been multiplied by 1000.</u></p>
+						<input type="text" id="general_input_after" onkeyup="generalInput1()" placeholder="Find specific player" style="background-color: yellowgreen; color:black;">
+						<div id="general_ranking_after" style = 'height: 400px; overflow:scroll;'></div>
+					</div>
+				</section>
+			</div>
+
+			<div class="posts" id="shares_after">
+				<h1 class="content-subhead">Shares - Game Theory</h1>
+				<section class="post">
+					<input onclick="changeImage1()" type="button" value="Show table" id="imagesButton1"></input>
+					<div class="post-description" id='general_shares_after'>
+						<div id="general_image_shares_after">
+							<!-- <p><img border="2" class="post-images" alt="" src="https://naiimic.github.io/content/fantasyshares_game/analysis/general_shares_points_team.png"></p> -->
+							<p><img border="2" class="post-images" alt="" src="https://naiimic.github.io/content/fantasyshares_game/analysis/general_shares_after.png"></p>
+						</div>
+						<div id="general_image_after" style="display:none">
+							<div id="general_contribution_after"></div>
+						</div>
+					</div>
+				</section>
+			</div>
+
             </div>
         </div>
     </div>
@@ -237,6 +340,28 @@
 			input = document.getElementById("general_input");
 			filter = input.value.toLowerCase();
 			table = document.getElementById("general_ranking").firstChild;
+			tr = table.getElementsByTagName("tr");
+
+			// Loop through all table rows, and hide those who don't match the search query
+			for (i = 1; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+				txtValue = td.textContent || td.innerText;
+				if (txtValue.toLowerCase().indexOf(filter) > -1) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+				}
+			}
+		}
+
+		function generalInput1() {
+			// Declare variables
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("general_input_after");
+			filter = input.value.toLowerCase();
+			table = document.getElementById("general_ranking_after").firstChild;
 			tr = table.getElementsByTagName("tr");
 
 			// Loop through all table rows, and hide those who don't match the search query
