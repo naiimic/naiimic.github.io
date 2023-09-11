@@ -341,17 +341,7 @@ img.post-thumbnail {
 .btndarkyellow {
     background-color: #e9b320;
 }
-.center-container {
-    font-weight: 400;
-    border: none;
-    border-radius: 5px;
-    padding: 2px 5px 1px 5px;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    color: #000000;
-    text-decoration: none;
-}
+
 input:not([type='checkbox']):not([type='radio']),
 select {
   display: block;

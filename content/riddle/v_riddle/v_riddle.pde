@@ -8,7 +8,6 @@ int maxDrops = 11;
 int[] histogramCounts = new int[maxDrops + 2]; 
 int frameCount = 0; 
 Bacteria selectedBacterium = null; 
-PFont boldFont;
 int foodNumber = 0;
 int simulationNumber = 1;
 final int MAX_SIMULATIONS = 1000;
@@ -17,8 +16,6 @@ void setup() {
   size(300, 600);
   frameRate(100); 
   resetSimulation();
-  boldFont = createFont("Avenir-Roman", 16);  // SansSerif-Bold font with size 16
-  textFont(boldFont);  // Set it as the default font
 }
 
 void draw() {
@@ -96,19 +93,18 @@ void displayLegend() {
 
   // Set up text size
   textSize(16);
-  textFont(boldFont); // Apply the bold font
   
   fill(0); // Set color to black
-  text("Food " + foodNumber, 45, 52.5);
+  text("Food " + foodNumber, 45, 55);
   fill(aColor);
-  text("A: " + countA, 45, 67.5);
+  text("A: " + countA, 45, 70);
   fill(bColor);
-  text("B: " + countB, 45, 82.5);
+  text("B: " + countB, 45, 85);
 }
 
 void drawBucket() {
   fill(64, 164, 223);
-  strokeWeight(5);
+  strokeWeight(3);
   stroke(0);
   rect(37.5, 37.5, 225, 225);
 }

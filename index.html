@@ -100,14 +100,21 @@
 		}
 
 		function isMobileDevice() {
-			return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+			var hasOrientation = typeof window.orientation !== "undefined";
+			var isSpecificMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			var isChromeEmulation = window.chrome && screen.width <= 768; // or any other threshold for "mobile" screen width
+			return hasOrientation || isSpecificMobile || isChromeEmulation;
 		}
 
 		window.onload = function() {
+			var canvasElement = document.querySelector("canvas[data-processing-sources='content/riddle/h_riddle/h_riddle.pde']");
+
 			if(isMobileDevice()) {
-				var canvasElement = document.querySelector("canvas[data-processing-sources='content/riddle/h_riddle/h_riddle.pde']");
+				// console.log("The device is mobile.");
+
 				if (canvasElement) {
 					canvasElement.setAttribute("data-processing-sources", "content/riddle/v_riddle/v_riddle.pde");
+					// console.log("The canvas shown is: content/riddle/v_riddle/v_riddle.pde");
 				}
 			}
 		}
@@ -251,9 +258,9 @@
 							<p>
 								The simulation above is a hint and represents the outcome after 11 drops of food. It runs 1,000 times to generate a histogram that showcases the probability distribution of the number of A-type bacteria.
 							</p>
-							<div class="center-container">
-								<button id="toggleSolutionBtn" class="btn btndarkyellow" onclick="toggleSolution()">Show Solution</button>
-							</div>
+							<p>
+								<a id="toggleSolutionBtn" class="btn btndarkyellow" href="javascript:void(0);" onclick="toggleSolution()">Show Solution</a>
+							</p>
 							<div class="solution" id="solutionSection" style="display: none;">
 								<p>
 									The captivating result of this riddle is that the distribution for the number of A-type bacteria after any number of food drops is <b>uniform</b>. This may sound counter-intuitive at first, but the reasoning can be understood as a balance of probabilities (<a href="content/riddle/riddle.pdf">complete solution</a>)!
