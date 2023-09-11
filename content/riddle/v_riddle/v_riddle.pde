@@ -19,7 +19,7 @@ PVector random2D() {
 
 void setup() {
   size(300, 600);
-  frameRate(100); 
+  frameRate(200); 
   resetSimulation();
 }
 
