@@ -72,7 +72,6 @@ void draw() {
     simulationNumber++;
     foodNumber = 0;
     resetSimulation();
-    //printProbabilities();
   }
 
   displayHistogram();
@@ -207,7 +206,11 @@ void displayHistogram() {
   textAlign(RIGHT);
   translate(25, height/1.75);
   rotate(-HALF_PI);
-  text("P(A = n) after " + simulationNumber + " simulations", 0, 0);
+  if(simulationNumber==2){
+    text("P(A = n) after " + (simulationNumber-1) + " simulation", 0, 0);
+  }else{
+    text("P(A = n) after " + (simulationNumber-1) + " simulations", 0, 0);
+  }
   rotate(HALF_PI);
   translate(-25, -height/1.75);
   textAlign(LEFT);
@@ -232,7 +235,8 @@ class Bacteria {
   }
 
   void moveRandom() {
-    PVector randomForce = random2D().mult(0.2); // Adjust the force as needed
+    PVector randomForce = random2D();
+		randomForce.mult(0.2); 
     acceleration.add(randomForce);
     applyForce();
     handleWallCollision(); // Added wall collision handling
@@ -297,16 +301,3 @@ class Bacteria {
     return random(1) < aChance;
   }
 }
-
-//void printProbabilities() {
-//  int totalSimulations = 0;
-//  for (int count : histogramCounts) {
-//    totalSimulations += count;
-//  }
-  
-//  println("Probabilities after " + totalSimulations + " simulations:");
-//  for (int i = 1; i <= maxDrops + 1; i++) {
-//    float probability = (float) histogramCounts[i] / totalSimulations;
-//    println("P(A = " + i + "): " + probability);
-//  }
-//}
