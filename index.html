@@ -107,16 +107,18 @@
 		}
 
 		window.onload = function() {
-			var riddleCanvas = document.getElementById("riddleCanvas");
+			var hCanvas = document.getElementById("h_riddleCanvas");
+			var vCanvas = document.getElementById("v_riddleCanvas");
 
 			if(isMobileDevice()) {
-				console.log("The device is mobile.");
+				// console.log("The device is mobile.");
 
-				if (riddleCanvas) {
-					riddleCanvas.setAttribute("data-processing-sources", "content/riddle/v_riddle/v_riddle.pde");
-				}
+				hCanvas.style.display = "none";
+				vCanvas.style.display = "block";
+			} else {
+				hCanvas.style.display = "block";
+				vCanvas.style.display = "none";
 			}
-			console.log("The canvas shown is: ", riddleCanvas.getAttribute("data-processing-sources"));
 		}
 
 		function toggleSolution() {
@@ -253,8 +255,9 @@
 								<b>Example:</b> Suppose the bucket contains 3 A-type bacteria and 2 B-type bacteria. If you drop a food particle and an A-type bacterium consumes it, the population changes to 4 A-type bacteria and 2 B-type bacteria. On the other hand, if a B-type bacterium eats the food, the population becomes 3 A-type and 3 B-type bacteria.
 							</p>
 							<p>
-								<canvas id="riddleCanvas" data-processing-sources="content/riddle/h_riddle/h_riddle.pde"></canvas>
-							</p>
+								<canvas id="h_riddleCanvas" data-processing-sources="content/riddle/h_riddle/h_riddle.pde" style="display: none;"></canvas>
+								<canvas id="v_riddleCanvas" data-processing-sources="content/riddle/v_riddle/v_riddle.pde" style="display: none;"></canvas>
+							</p>							
 							<p>
 								The simulation above is a hint and represents the outcome after 11 drops of food. It runs 1,000 times to generate a histogram that showcases the probability distribution of the number of A-type bacteria.
 							</p>
