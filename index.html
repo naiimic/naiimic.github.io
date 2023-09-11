@@ -44,6 +44,9 @@
 		<a onclick="closeNav()" href="#hwm">
 			<i class="fas fa-calculator icon-color"></i> Math conjecture: high-water marks
 		</a>
+		<a onclick="closeNav()" href="#riddle">
+			<i class="fas fa-bacteria icon-color"></i> Math riddle
+		</a>
 		<a onclick="closeNav()" href="#miceMaze">
 			<i class="fas fa-paw icon-color"></i> Mice maze game
 		</a>
@@ -96,6 +99,31 @@
 			}
 		}
 
+		function isMobileDevice() {
+			return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+		}
+
+		window.onload = function() {
+			if(isMobileDevice()) {
+				var canvasElement = document.querySelector("canvas[data-processing-sources='content/riddle/h_riddle/h_riddle.pde']");
+				if (canvasElement) {
+					canvasElement.setAttribute("data-processing-sources", "content/riddle/v_riddle/v_riddle.pde");
+				}
+			}
+		}
+
+		function toggleSolution() {
+			var solutionDiv = document.getElementById("solutionSection");
+			var toggleBtn = document.getElementById("toggleSolutionBtn");
+			
+			if (solutionDiv.style.display === "none" || solutionDiv.style.display === "") {
+				solutionDiv.style.display = "block";
+				toggleBtn.textContent = "Hide Solution";
+			} else {
+				solutionDiv.style.display = "none";
+				toggleBtn.textContent = "Show Solution";
+			}
+		}
 	</script>
 
 	<div id="layout" class="pure-g">
@@ -205,6 +233,33 @@
 						you can click <a href="content/highwatermarks/hwm.pdf">here</a>.
 					</p>
 					</div>
+					</section>
+				</div>
+
+				<div class="posts" id="riddle">
+					<h1 class="content-subhead">Math riddle</h1>
+					<section class="post">
+						<div class="post-description">
+							<p>
+								Imagine you have a bucket of water containing two distinct types of bacteria: A and B. You start with one bacterium of each type, A and B. Every time you introduce a particle of food into the bucket, one of the bacteria consumes it. The bacterium that eats the food reproduces, adding one more bacterium of its type to the population. If you were to drop 100 particles of food into the bucket, can you predict the distribution of the A-type bacteria?							</p>
+							<p>
+								<b>Example:</b> Suppose the bucket contains 3 A-type bacteria and 2 B-type bacteria. If you drop a food particle and an A-type bacterium consumes it, the population changes to 4 A-type bacteria and 2 B-type bacteria. On the other hand, if a B-type bacterium eats the food, the population becomes 3 A-type and 3 B-type bacteria.
+							</p>
+							<p>
+								<canvas data-processing-sources="content/riddle/h_riddle/h_riddle.pde"></canvas>
+							</p>
+							<p>
+								The simulation above is a hint and represents the outcome after 11 drops of food. It runs 1,000 times to generate a histogram that showcases the probability distribution of the number of A-type bacteria.
+							</p>
+							<div class="center-container">
+								<button id="toggleSolutionBtn" class="btn btndarkyellow" onclick="toggleSolution()">Show Solution</button>
+							</div>
+							<div class="solution" id="solutionSection" style="display: none;">
+								<p>
+									The captivating result of this riddle is that the distribution for the number of A-type bacteria after any number of food drops is <b>uniform</b>. This may sound counter-intuitive at first, but the reasoning can be understood as a balance of probabilities (<a href="content/riddle/riddle.pdf">complete solution</a>)!
+								</p>
+							</div>
+						</div>
 					</section>
 				</div>
 
