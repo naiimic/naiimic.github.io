@@ -255,8 +255,8 @@
 								<b>Example:</b> Suppose the bucket contains 3 A-type bacteria and 2 B-type bacteria. If you drop a food particle and an A-type bacterium consumes it, the population changes to 4 A-type bacteria and 2 B-type bacteria. On the other hand, if a B-type bacterium eats the food, the population becomes 3 A-type and 3 B-type bacteria.
 							</p>
 							<p>
-								<canvas id="h_riddleCanvas" data-processing-sources="content/riddle/h_riddle/h_riddle.pde" style="display: none;"></canvas>
-								<canvas id="v_riddleCanvas" data-processing-sources="content/riddle/v_riddle/v_riddle.pde" style="display: none;"></canvas>
+								<canvas id="h_riddleCanvas" data-processing-sources="content/riddle/h_riddle/h_riddle.pde" style="display: none; pointer-events: none;"></canvas>
+								<canvas id="v_riddleCanvas" data-processing-sources="content/riddle/v_riddle/v_riddle.pde" style="display: none; pointer-events: none;"></canvas>
 							</p>							
 							<p>
 								The simulation above is a hint and represents the outcome after 9 drops of food. It runs 1,000 times to generate a histogram that showcases the probability distribution of the number of A-type bacteria.
@@ -343,7 +343,7 @@
 								Now look at the AI as it learns :)
 							</p>
 							<p> 
-								<canvas data-processing-sources="content/game2048/game2048.pde"></canvas>
+								<canvas style="pointer-events: none;" data-processing-sources="content/game2048/game2048.pde"></canvas>
 							</p>
 					</div>
 					</section>
@@ -416,7 +416,7 @@
 								Now look at the AI as it plays. If the AI wins the number of bombs increases by 1 (with a limit of 25 bombs).
 							</p>
 							<p> 
-								<canvas data-processing-sources="content/minesweeper/minesweeper.pde"></canvas>
+								<canvas style="pointer-events: none;" data-processing-sources="content/minesweeper/minesweeper.pde"></canvas>
 							</p>
 					</div>
 					</section>
