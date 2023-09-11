@@ -12,6 +12,11 @@ int foodNumber = 0;
 int simulationNumber = 1;
 final int MAX_SIMULATIONS = 1000;
 
+PVector random2D() {
+  float angle = random(TWO_PI);
+  return new PVector(cos(angle), sin(angle));
+}
+
 void setup() {
   size(600, 300);
   frameRate(100); 
@@ -148,7 +153,7 @@ void dropFood() {
 }
 
 void selectClosestBacterium(color colType) {
-  float minDistance = Float.MAX_VALUE;
+  float minDistance = 100000;
   Bacteria closestBacterium = null;
 
   for (Bacteria b : bacterias) {
@@ -219,13 +224,13 @@ class Bacteria {
     this.x = x;
     this.y = y;
     this.col = col;
-    this.velocity = PVector.random2D();
+    this.velocity = random2D();
     this.acceleration = new PVector();
     this.maxForce = 0.5; 
   }
 
   void moveRandom() {
-    PVector randomForce = PVector.random2D().mult(0.2); // Adjust the force as needed
+    PVector randomForce = random2D().mult(0.2); // Adjust the force as needed
     acceleration.add(randomForce);
     applyForce();
     handleWallCollision(); // Added wall collision handling
@@ -462,7 +467,7 @@ class Bacteria {
 //}
 
 //void selectClosestBacterium(color colType) {
-//  float minDistance = Float.MAX_VALUE;
+//  float minDistance = 100000;
 //  Bacteria closestBacterium = null;
 
 //  for (Bacteria b : bacterias) {
@@ -533,13 +538,13 @@ class Bacteria {
 //    this.x = x;
 //    this.y = y;
 //    this.col = col;
-//    this.velocity = PVector.random2D();
+//    this.velocity = random2D();
 //    this.acceleration = new PVector();
 //    this.maxForce = 0.5; 
 //  }
 
 //  void moveRandom() {
-//    PVector randomForce = PVector.random2D().mult(0.2); // Adjust the force as needed
+//    PVector randomForce = random2D().mult(0.2); // Adjust the force as needed
 //    acceleration.add(randomForce);
 //    applyForce();
 //    handleWallCollision(); // Added wall collision handling
