@@ -4,7 +4,7 @@ color bColor = color(0, 0, 255); // Blue;
 PVector foodPos;
 boolean foodDropped = false;
 int foodDropCount = 0;
-int maxDrops = 11;
+int maxDrops = 9;
 int[] histogramCounts = new int[maxDrops + 2]; 
 int frameCount = 0; 
 Bacteria selectedBacterium = null; 
@@ -19,7 +19,7 @@ PVector random2D() {
 
 void setup() {
   size(300, 600);
-  frameRate(200); 
+  frameRate(150); 
   resetSimulation();
 }
 
