@@ -309,10 +309,13 @@
                 </div>
             </div>
 
+            <!-- Add info text section -->
+            <div class="info-text" id="infoText"></div>
+
             <div class="nav-buttons">
                 <button onclick="showRandomExample()" class="nav-button">Random</button>
-                <button onclick="showRandomExample('match')" class="nav-button">Match</button>
-                <button onclick="showRandomExample('no_match')" class="nav-button">No Match</button>
+                <button onclick="showRandomExample('match')" class="nav-button" id="matchButton">Match</button>
+                <button onclick="showRandomExample('no_match')" class="nav-button" id="noMatchButton">No Match</button>
             </div>
         </div>
 
@@ -327,12 +330,39 @@
         let currentSource = 'validation';
         let currentIndex = 0;
 
+        function updateInfoText(example) {
+            const hasMatch = example.images.candidates.some(c => c.is_correct);
+            const matchInfo = hasMatch ? 
+                `Match candidate ${example.images.candidates.findIndex(c => c.is_correct)}` : 
+                'No match candidate';
+            
+            document.getElementById('infoText').innerHTML = `
+                <p>Index: ${example.index}</p>
+                <p>Type: ${matchInfo}</p>
+            `;
+        }
+
+        function updateButtonStates(sourceExamples) {
+            const matchExamples = sourceExamples.filter(ex => 
+                ex.images.candidates.some(c => c.is_correct)
+            );
+            const noMatchExamples = sourceExamples.filter(ex => 
+                !ex.images.candidates.some(c => c.is_correct)
+            );
+            
+            document.getElementById('matchButton').disabled = matchExamples.length === 0;
+            document.getElementById('noMatchButton').disabled = noMatchExamples.length === 0;
+        }
+
         function filterExamples(source) {
             currentSource = source;
             document.querySelectorAll('.data-selector button').forEach(btn => {
                 btn.classList.toggle('active', btn.textContent.toLowerCase().includes(source));
             });
+            
+            const sourceExamples = allExamples.filter(ex => ex.source === source);
             updateStats();
+            updateButtonStates(sourceExamples);
             showExample(0);
         }
 
@@ -353,6 +383,11 @@
             if (!example) return;
 
             currentIndex = index;
+            updateInfoText(example);
+            
+            const sourceExamples = allExamples.filter(ex => ex.source === currentSource);
+            updateButtonStates(sourceExamples);
+            
             const display = document.getElementById('exampleDisplay');
             
             // Generate HTML for the example
