@@ -442,15 +442,12 @@
             transform: translateX(24px);
         }
 
-        .solution-hidden .test-section img:last-child,
-        .solution-hidden .candidate.correct {
-            filter: blur(10px);
-            transition: filter 0.3s ease;
+        .solution-hidden .candidate.correct::after {
+            display: none; /* Hide only the checkmark */
         }
 
         .solution-hidden .info-text {
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            display: none; /* Keep hiding the match info text */
         }
 
         .solution-hidden .candidate {
