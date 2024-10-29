@@ -442,16 +442,20 @@
             transform: translateX(24px);
         }
 
+        .solution-hidden .test-section .example-pair > *:last-child {
+            display: none; /* Hide the arrow and output container */
+        }
+
+        .solution-hidden .candidate.correct {
+            border-color: #333 !important; /* Remove green border */
+        }
+
         .solution-hidden .candidate.correct::after {
-            display: none; /* Hide only the checkmark */
+            display: none; /* Hide the checkmark */
         }
 
         .solution-hidden .info-text {
-            display: none; /* Keep hiding the match info text */
-        }
-
-        .solution-hidden .candidate {
-            border: 1px solid #333 !important;
+            display: none; /* Hide the match info text */
         }
 
         /* Enhanced existing styles */
@@ -482,10 +486,6 @@
             justify-content: center;
             font-weight: bold;
             transition: all 0.3s ease;
-        }
-
-        .solution-hidden .candidate.correct::after {
-            opacity: 0;
         }
 
         /* Responsive adjustments */
@@ -731,7 +731,7 @@
                         `).join('')}
                     </div>
                 </div>
-    
+
                 <div class="test-section">
                     <h2 class="section-title">Test Example</h2>
                     <div class="example-pair">
@@ -739,29 +739,31 @@
                             <img src="${example.images.test.input}" alt="Test Input">
                             <p class="text-sm text-gray-400 mt-2">Input</p>
                         </div>
-                        <span class="arrow">→</span>
-                        <div class="grid-display">
-                            <img src="${example.images.test.output}" alt="Test Output">
-                            <p class="text-sm text-gray-400 mt-2">Expected Output</p>
-                        </div>
+                        ${!solutionHidden ? `
+                            <span class="arrow">→</span>
+                            <div class="grid-display">
+                                <img src="${example.images.test.output}" alt="Test Output">
+                                <p class="text-sm text-gray-400 mt-2">Expected Output</p>
+                            </div>
+                        ` : ''}
                     </div>
                 </div>
-    
+
                 <div class="candidates-section">
                     <h2 class="section-title">Candidates</h2>
                     <div class="candidates-grid">
                         ${example.images.candidates.map(candidate => `
                             <div class="candidate ${candidate.is_correct ? 'correct' : ''}">
-                                <p>${candidate.index}${candidate.is_correct ? ' ✓' : ''}</p>
+                                <p>${candidate.index}</p>
                                 <img src="${candidate.image}" 
-                                     alt="Candidate ${candidate.index}"
-                                     class="w-full">
+                                    alt="Candidate ${candidate.index}"
+                                    class="w-full">
                             </div>
                         `).join('')}
                     </div>
                 </div>
             `;
-            
+
             display.innerHTML = html;
         }
 
