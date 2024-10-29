@@ -442,10 +442,6 @@
             transform: translateX(24px);
         }
 
-        .solution-hidden .test-section .example-pair > *:last-child {
-            display: none; /* Hide the arrow and output container */
-        }
-
         .solution-hidden .candidate.correct {
             border-color: #333 !important; /* Remove green border */
         }
@@ -456,6 +452,11 @@
 
         .solution-hidden .info-text {
             display: none; /* Hide the match info text */
+        }
+
+        .solution-hidden .solution-output {
+            filter: blur(10px);
+            transition: filter 0.3s ease;
         }
 
         /* Enhanced existing styles */
@@ -739,13 +740,11 @@
                             <img src="${example.images.test.input}" alt="Test Input">
                             <p class="text-sm text-gray-400 mt-2">Input</p>
                         </div>
-                        ${!solutionHidden ? `
-                            <span class="arrow">→</span>
-                            <div class="grid-display">
-                                <img src="${example.images.test.output}" alt="Test Output">
-                                <p class="text-sm text-gray-400 mt-2">Expected Output</p>
-                            </div>
-                        ` : ''}
+                        <span class="arrow">→</span>
+                        <div class="grid-display">
+                            <img src="${example.images.test.output}" alt="Test Output" class="solution-output">
+                            <p class="text-sm text-gray-400 mt-2">Expected Output</p>
+                        </div>
                     </div>
                 </div>
 
