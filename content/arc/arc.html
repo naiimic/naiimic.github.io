@@ -455,7 +455,7 @@
         }
 
         .solution-hidden .solution-output {
-            filter: blur(40px);
+            filter: blur(35px);
             transition: filter 0.3s ease;
         }
 
@@ -696,13 +696,15 @@
             const example = allExamples.find(ex => ex.source === currentSource && ex.index === index);
             if (!example) return;
 
-            const hasMatch = example.images.candidates.some(c => c.is_correct);
+            // const hasMatch = example.images.candidates.some(c => c.is_correct);
             
-            if (hasMatch) {
-                toggleSolution(true);
-            } else {
-                toggleSolution(false);
-            }
+            // if (hasMatch) {
+            //     toggleSolution(true);
+            // } else {
+            //     toggleSolution(false);
+            // }
+
+            toggleSolution(true);
 
             currentIndex = index;
             updateInfoText(example);
