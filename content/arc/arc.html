@@ -63,6 +63,11 @@
             position: relative;
             overflow: hidden;
             border: 1px solid transparent;
+            -webkit-tap-highlight-color: transparent; /* Prevents default mobile tap highlight */
+        }
+
+        .gradient-btn:focus {
+            outline: none;
         }
 
         .gradient-btn.active {
@@ -80,6 +85,19 @@
         .gradient-btn:not(.active):hover {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (hover: none) {
+            .gradient-btn:focus:not(.active) {
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid transparent;
+                transform: none;
+            }
+            
+            .gradient-btn:active:not(.active) {
+                background: rgba(255, 255, 255, 0.1);
+                transition: background 0.1s ease;
+            }
         }
 
         @keyframes subtle-pulse {
