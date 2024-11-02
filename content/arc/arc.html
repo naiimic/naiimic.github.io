@@ -17,6 +17,12 @@
             min-height: 100vh;
         }
 
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
         ::-webkit-scrollbar {
             display: none;
         }
@@ -269,75 +275,126 @@
         }
 
         @media (max-width: 640px) {
+            /* Container adjustments */
+            .container {
+                padding: 0.5rem;
+                width: 100vw;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+
+            /* Navbar adjustments */
             .nav-glass {
-                padding: 0.5rem 0;
+                padding: 0.75rem 0;
             }
 
             .logo-gradient {
-                font-size: 1.5rem;
+                font-size: 1.75rem;
+                line-height: 1.2;
             }
 
+            /* Controls adjustments */
             .control-panel {
+                margin: 0.5rem 0;
                 padding: 0.75rem;
             }
 
-            .stats-panel {
-                grid-template-columns: 1fr;
+            /* Compact solution toggle for mobile */
+            .solution-toggle-mobile {
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+            }
+
+            .solution-toggle-mobile span {
+                display: none;
+            }
+
+            .solution-toggle-mobile i {
+                font-size: 1.2rem;
+            }
+
+            /* Source selector adjustments */
+            #sourceSelector {
+                max-width: 140px;
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            /* Navigation controls adjustments */
+            .nav-controls {
+                padding: 0.5rem;
+                width: 100%;
+                justify-content: center;
                 gap: 0.5rem;
             }
 
-            .training-grid {
-                grid-template-columns: 1fr;
+            /* Filter buttons adjustments */
+            .filter-buttons-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+                width: 100%;
             }
 
+            .filter-buttons-container .gradient-btn {
+                width: 100%;
+                padding: 0.5rem;
+                font-size: 0.9rem;
+                white-space: nowrap;
+            }
+
+            /* Stats panel adjustments */
+            .stats-panel {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                padding: 0.5rem;
+                gap: 0.5rem;
+            }
+
+            .stat-item {
+                flex: 1;
+                min-width: calc(33% - 0.5rem);
+                padding: 0.5rem;
+            }
+
+            /* Example cards adjustments */
             .example-card {
+                margin: 0.5rem 0;
                 padding: 0.75rem;
             }
 
             .example-card .flex {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.75rem;
             }
 
-            .example-card .flex > div {
-                width: 100%;
-            }
-
-            .fa-arrow-right {
-                transform: rotate(90deg);
-                margin: 0.5rem 0;
-            }
-
-            .nav-controls {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .gradient-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            /* Adjust grid layouts for candidates */
-            .grid-cols-1 {
-                grid-template-columns: repeat(2, 1fr);
+            .example-card img {
+                max-height: 200px;
+                width: auto;
+                margin: 0 auto;
             }
         }
     </style>
 </head>
 <body class="antialiased">
     <!-- Navigation Bar -->
-    <nav class="nav-glass sticky top-0 z-50 py-4">
+    <nav class="nav-glass sticky top-0 z-50">
         <div class="container mx-auto px-4 flex justify-between items-center">
-            <h1 class="text-3xl md:text-4xl font-bold logo-gradient">ARC Challenge - MARA</h1>
-            <div class="flex items-center space-x-4">
-                <select id="sourceSelector" class="bg-slate-800/50 backdrop-filter backdrop-blur-lg text-slate-200 rounded-lg px-4 py-2 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <h1 class="text-2xl md:text-4xl font-bold logo-gradient">ARC Challenge - MARA</h1>
+            <div class="flex items-center gap-2">
+                <select id="sourceSelector" class="bg-slate-800/50 backdrop-filter backdrop-blur-lg text-slate-200 rounded-lg border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <option value="validation">ARC Validation</option>
                     <option value="gpt4">GPT4 Synthetic</option>
                 </select>
-                <button id="solutionToggle" class="gradient-btn px-4 py-2 rounded-lg flex items-center space-x-2">
+                <button id="solutionToggle" class="gradient-btn rounded-lg md:px-4 md:py-2 solution-toggle-mobile">
                     <i class="fas fa-eye-slash"></i>
-                    <span>Hide Solution</span>
+                    <span class="hidden md:inline ml-2">Hide Solution</span>
                 </button>
             </div>
         </div>
@@ -348,14 +405,14 @@
         <!-- Controls -->
         <div class="control-panel p-6 mb-8">
             <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
-                <div class="flex space-x-2">
-                    <button onclick="setFilter('all')" class="gradient-btn px-6 py-2 rounded-lg">
+                <div class="filter-buttons-container">
+                    <button onclick="setFilter('all')" class="gradient-btn active rounded-lg">
                         <span>All</span>
                     </button>
-                    <button onclick="setFilter('match')" class="gradient-btn px-6 py-2 rounded-lg">
+                    <button onclick="setFilter('match')" class="gradient-btn rounded-lg">
                         <span>Match</span>
                     </button>
-                    <button onclick="setFilter('no_match')" class="gradient-btn px-6 py-2 rounded-lg">
+                    <button onclick="setFilter('no_match')" class="gradient-btn rounded-lg">
                         <span>No Match</span>
                     </button>
                 </div>
