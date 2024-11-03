@@ -10,14 +10,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
+        /* Base Styles */
         body {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: #f8fafc;
             font-family: 'Space Grotesk', sans-serif;
             min-height: 100vh;
-        }
-
-        body {
             overflow-x: hidden;
             width: 100%;
             position: relative;
@@ -32,7 +30,7 @@
             scrollbar-width: none;
         }
 
-        /* Enhanced Nav Bar */
+        /* Navigation Bar */
         .nav-glass {
             background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
@@ -47,7 +45,7 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Enhanced Controls */
+        /* Control Panel */
         .control-panel {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
@@ -56,14 +54,33 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
+        /* Filter Buttons Container */
+        .filter-buttons-container {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
         /* Gradient Buttons */
         .gradient-btn {
-            background: linear-gradient(45deg, #6366f1, #ec4899);
-            transition: all 0.3s ease;
+            height: 40px;
+            min-width: 100px;
+            padding: 0 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-            border: 1px solid transparent;
-            -webkit-tap-highlight-color: transparent; /* Prevents default mobile tap highlight */
+            -webkit-tap-highlight-color: transparent;
         }
 
         .gradient-btn:focus {
@@ -71,10 +88,9 @@
         }
 
         .gradient-btn.active {
-            background: linear-gradient(45deg, #6366f1, #ec4899);
+            background: linear-gradient(135deg, #6366f1, #ec4899);
             box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
         }
 
         .gradient-btn:not(.active) {
@@ -84,30 +100,8 @@
 
         .gradient-btn:not(.active):hover {
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        @media (hover: none) {
-            .gradient-btn:focus:not(.active) {
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid transparent;
-                transform: none;
-            }
-            
-            .gradient-btn:active:not(.active) {
-                background: rgba(255, 255, 255, 0.1);
-                transition: background 0.1s ease;
-            }
-        }
-
-        @keyframes subtle-pulse {
-            0% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
-            100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
-        }
-
-        .gradient-btn.active {
-            animation: subtle-pulse 2s infinite;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         .gradient-btn::before {
@@ -134,6 +128,17 @@
         .gradient-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+        }
+
+        /* Button Animation */
+        @keyframes subtle-pulse {
+            0% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+            100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
+        }
+
+        .gradient-btn.active {
+            animation: subtle-pulse 2s infinite;
         }
 
         /* Card Effects */
@@ -246,18 +251,40 @@
         }
 
         .solution-hidden .solution-output {
-            filter: blur(35px);  /* Increased from 20px */
+            filter: blur(35px);
         }
 
+        /* Test Example Container */
         .test-example-container {
-            max-width: 800px;  /* Limit maximum width */
-            margin: 0 auto;    /* Center the container */
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .test-example-container .example-card {
+            width: 100%;
+        }
+
+        .test-example-container .example-card .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .test-example-container .flex > div {
+            flex: 1;
+            max-width: 45%;
         }
 
         .test-example-container img {
-            max-height: 300px; /* Limit maximum height */
+            max-height: 300px;
             width: auto;
             object-fit: contain;
+            margin: 0 auto;
+            display: block;
         }
 
         /* Navigation Controls */
@@ -292,8 +319,8 @@
             margin-bottom: 1rem;
         }
 
+        /* Mobile Styles */
         @media (max-width: 640px) {
-            /* Container adjustments */
             .container {
                 padding: 0.5rem;
                 width: 100vw;
@@ -301,7 +328,6 @@
                 overflow-x: hidden;
             }
 
-            /* Navbar adjustments */
             .nav-glass {
                 padding: 0.75rem 0;
             }
@@ -311,13 +337,11 @@
                 line-height: 1.2;
             }
 
-            /* Controls adjustments */
             .control-panel {
                 margin: 0.5rem 0;
                 padding: 0.75rem;
             }
 
-            /* Compact solution toggle for mobile */
             .solution-toggle-mobile {
                 width: 40px;
                 height: 40px;
@@ -336,14 +360,12 @@
                 font-size: 1.2rem;
             }
 
-            /* Source selector adjustments */
             #sourceSelector {
                 max-width: 140px;
                 padding: 0.5rem;
                 font-size: 0.9rem;
             }
 
-            /* Navigation controls adjustments */
             .nav-controls {
                 padding: 0.5rem;
                 width: 100%;
@@ -351,7 +373,6 @@
                 gap: 0.5rem;
             }
 
-            /* Filter buttons adjustments */
             .filter-buttons-container {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -366,7 +387,6 @@
                 white-space: nowrap;
             }
 
-            /* Stats panel adjustments */
             .stats-panel {
                 display: flex;
                 flex-wrap: wrap;
@@ -381,7 +401,6 @@
                 padding: 0.5rem;
             }
 
-            /* Example cards adjustments */
             .example-card {
                 margin: 0.5rem 0;
                 padding: 0.75rem;
@@ -396,6 +415,44 @@
                 max-height: 200px;
                 width: auto;
                 margin: 0 auto;
+            }
+
+            .test-example-container .flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .test-example-container .flex > div {
+                max-width: 100%;
+            }
+
+            .test-example-container img {
+                max-height: 250px;
+            }
+        }
+
+        /* Mobile Touch Handling */
+        @media (hover: none) {
+            .gradient-btn:not(.active) {
+                background: rgba(255, 255, 255, 0.05) !important;
+            }
+            
+            .gradient-btn:active:not(.active) {
+                background: rgba(255, 255, 255, 0.1) !important;
+            }
+            
+            .gradient-btn.active {
+                background: linear-gradient(135deg, #6366f1, #ec4899) !important;
+            }
+            
+            .gradient-btn:hover:not(.active) {
+                background: rgba(255, 255, 255, 0.05) !important;
+                border: 1px solid transparent;
+            }
+            
+            #solutionToggle:active,
+            #solutionToggle:focus {
+                background: rgba(255, 255, 255, 0.05) !important;
             }
         }
     </style>
