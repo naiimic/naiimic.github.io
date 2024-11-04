@@ -440,8 +440,10 @@
                 ui.grid.appendChild(fragment);
                 state.page++;
                 
-                // Call lazyLoadImages after adding new content
-                lazyLoadImages();
+                // Initialize lazy loading for new images
+                requestAnimationFrame(() => {
+                    lazyLoadImages();
+                });
             }
             
             state.loading = false;
@@ -470,9 +472,13 @@
             
             const threshold = 1000;
             const bottomDistance = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
+            
             if (bottomDistance < threshold) {
                 loadMoreExamples();
             }
+            
+            // Trigger lazy loading check on scroll
+            lazyLoadImages();
         }
 
         // Initialize
@@ -570,22 +576,35 @@
         // Optimize scroll handler
         const debouncedScroll = debounce(handleScroll, 16);
         window.addEventListener('scroll', debouncedScroll, { passive: true });
+        let globalImageObserver;
 
         // Image loading optimization
         function lazyLoadImages() {
-            const imageElements = document.querySelectorAll('img[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                        imageObserver.unobserve(img);
-                    }
+            // Create observer if it doesn't exist
+            if (!globalImageObserver) {
+                globalImageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                                observer.unobserve(img);
+                            }
+                        }
+                    });
+                }, {
+                    root: null,
+                    rootMargin: '50px 0px',
+                    threshold: 0.1
                 });
-            });
+            }
 
-            imageElements.forEach(img => imageObserver.observe(img));
+            // Get all unloaded images
+            const imageElements = document.querySelectorAll('img[data-src]');
+            imageElements.forEach(img => {
+                globalImageObserver.observe(img);
+            });
         }
 
         // Add mobile touch handling
