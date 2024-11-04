@@ -159,6 +159,20 @@
                 padding: 1rem;
             }
         }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .spin-animation {
+            animation: spin 1s linear;
+        }
+
+        .gradient-btn.shuffle-active {
+            background: linear-gradient(45deg, rgba(236, 72, 153, 0.2), rgba(99, 102, 241, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -173,6 +187,15 @@
                     <i class="fas fa-cube mr-2"></i>
                     <span>Model Performance</span>
                 </a>
+                <div class="flex items-center gap-2">
+                    <button id="shuffleButton" class="gradient-btn px-4 py-2 rounded-lg">
+                        <i class="fas fa-random mr-2"></i>
+                        <span>Shuffle</span>
+                    </button>
+                    <button id="resetButton" class="gradient-btn px-3 py-2 rounded-lg hidden">
+                        <i class="fas fa-rotate"></i>
+                    </button>
+                </div>
             </div>
             <select id="sourceSelector" class="bg-slate-800/50 backdrop-blur-lg text-slate-200 rounded-lg border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 px-4 py-2">
                 <option value="barc_gpt4_desc">GPT-4</option>
@@ -247,7 +270,11 @@
             currentSource: 'barc_gpt4_desc',
             page: 0,
             loading: false,
-            itemsPerPage: 12
+            itemsPerPage: 12,
+            shuffled: false,
+            shuffledExamples: [],
+            originalExamples: [], 
+            shuffleCount: 0
         };
 
         // UI Components
@@ -258,12 +285,76 @@
             totalCount: document.getElementById('totalCount'),
             currentSource: document.getElementById('currentSource'),
             description: document.getElementById('descriptionText'),
-            progress: document.querySelector('.scroll-progress')
+            progress: document.querySelector('.scroll-progress'),
+            shuffleButton: document.getElementById('shuffleButton'),
+            resetButton: document.getElementById('resetButton')
         };
 
         // Helper Functions
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            // Double shuffle for better randomization
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
         function getFilteredExamples() {
-            return examples.filter(ex => ex.source === state.currentSource);
+            const filtered = examples.filter(ex => ex.source === state.currentSource);
+            if (state.shuffled) {
+                return state.shuffledExamples;
+            }
+            return filtered;
+        }
+
+        function handleShuffle() {
+            state.shuffled = true;
+            state.page = 0;
+            state.shuffleCount++;
+            ui.grid.innerHTML = '';
+            
+            if (state.shuffleCount === 1) {
+                const filtered = examples.filter(ex => ex.source === state.currentSource);
+                state.originalExamples = [...filtered];
+            }
+            
+            state.shuffledExamples = shuffleArray(
+                state.shuffleCount === 1 ? state.originalExamples : state.shuffledExamples
+            );
+            
+            ui.shuffleButton.classList.add('shuffle-active');
+            ui.resetButton.classList.remove('hidden');
+            
+            const icon = ui.shuffleButton.querySelector('i');
+            icon.classList.add('spin-animation');
+            setTimeout(() => icon.classList.remove('spin-animation'), 1000);
+            
+            loadMoreExamples();
+        }
+
+        function handleReset() {
+            state.shuffled = false;
+            state.page = 0;
+            state.shuffleCount = 0;
+            state.shuffledExamples = [];
+            ui.grid.innerHTML = '';
+            
+            // Update UI
+            ui.shuffleButton.classList.remove('shuffle-active');
+            ui.resetButton.classList.add('hidden');
+            
+            // Add spin animation to reset button
+            const icon = ui.resetButton.querySelector('i');
+            icon.classList.add('spin-animation');
+            setTimeout(() => icon.classList.remove('spin-animation'), 1000);
+            
+            loadMoreExamples();
         }
 
         function updateProgress() {
@@ -295,12 +386,12 @@
                             <div class="bg-slate-800/30 p-4 rounded-lg">
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
-                                        <img src="${train.input}" alt="Train Input ${i+1}" 
+                                        <img data-src="${train.input}" alt="Train Input ${i+1}" 
                                             class="w-full h-auto object-contain rounded-lg">
                                         <p class="text-center text-sm text-slate-400 mt-2">Train Input ${i+1}</p>
                                     </div>
                                     <div>
-                                        <img src="${train.output}" alt="Train Output ${i+1}"
+                                        <img data-src="${train.output}" alt="Train Output ${i+1}"
                                             class="w-full h-auto object-contain rounded-lg">
                                         <p class="text-center text-sm text-slate-400 mt-2">Train Output ${i+1}</p>
                                     </div>
@@ -311,12 +402,12 @@
                         <div class="bg-slate-800/30 p-4 rounded-lg">
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <img src="${example.images.test.input}" alt="Test Input"
+                                    <img data-src="${example.images.test.input}" alt="Test Input"
                                         class="w-full h-auto object-contain rounded-lg">
                                     <p class="text-center text-sm text-slate-400 mt-2">Test Input</p>
                                 </div>
                                 <div>
-                                    <img src="${example.images.test.output}" alt="Test Output"
+                                    <img data-src="${example.images.test.output}" alt="Test Output"
                                         class="w-full h-auto object-contain rounded-lg">
                                     <p class="text-center text-sm text-slate-400 mt-2">Test Output</p>
                                 </div>
@@ -348,6 +439,9 @@
                 });
                 ui.grid.appendChild(fragment);
                 state.page++;
+                
+                // Call lazyLoadImages after adding new content
+                lazyLoadImages();
             }
             
             state.loading = false;
@@ -358,7 +452,15 @@
         function handleSourceChange(event) {
             state.currentSource = event.target.value;
             state.page = 0;
+            state.shuffled = false;
+            state.shuffleCount = 0;
+            state.shuffledExamples = [];
             ui.grid.innerHTML = '';
+            
+            // Reset UI
+            ui.shuffleButton.classList.remove('shuffle-active');
+            ui.resetButton.classList.add('hidden');
+            
             updateSourceInfo();
             loadMoreExamples();
         }
@@ -410,9 +512,17 @@
             // Add event listeners
             window.addEventListener('scroll', handleScroll, { passive: true });
             ui.sourceSelect.addEventListener('change', handleSourceChange);
+            ui.shuffleButton.addEventListener('click', handleShuffle);
+            ui.resetButton.addEventListener('click', handleReset);
 
             // Add keyboard navigation
             document.addEventListener('keydown', (e) => {
+                if (e.key === 's' && !e.ctrlKey && !e.metaKey) {
+                    handleShuffle();
+                } else if (e.key === 'r' && !e.ctrlKey && !e.metaKey) {
+                    if (!state.shuffled) return;
+                    handleReset();
+                }
                 switch(e.key) {
                     case 'ArrowLeft':
                         const prevOption = ui.sourceSelect.selectedIndex - 1;
