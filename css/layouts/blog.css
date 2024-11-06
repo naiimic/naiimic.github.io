@@ -40,7 +40,7 @@ p.news {
 
 #layout {
     padding: 10px;
-    max-width: 80em; 
+    max-width: 55em; 
     margin: 0 auto; 
 }
 
@@ -179,7 +179,7 @@ p.news {
 }
 .content {
     padding: 2em 1em 0;
-    max-width: 80em;
+    max-width: 55em;
     margin-left: auto;
     margin-right: auto;
 }
@@ -388,7 +388,7 @@ input, select, textarea {
         padding: 2em 3em 0;
         margin-left: auto;
         margin-right: auto;
-        max-width: 80em;
+        max-width: 55em;
     }
 
     .header {
