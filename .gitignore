@@ -148,3 +148,4 @@ venv
 generate_arc_page.py
 content/arc/data/
 content/arc/templates/
+rename.py
