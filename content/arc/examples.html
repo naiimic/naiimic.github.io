@@ -6,6 +6,11 @@
     <title>BARC Examples</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://naiimic.github.io/favicons/videogame-favicon.ico">
+	<link rel="apple-touch-icon" href="https://naiimic.github.io/favicons/videogame-apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/videogame-favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/videogame-favicon-32x32.png" sizes="32x32">
     <style>
         /* Base Styles */
         body {
@@ -54,6 +59,100 @@
             .nav-group:last-child {
                 flex-direction: row;
                 gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Hide desktop controls */
+            .nav-group:last-child {
+                display: none !important;
+            }
+
+            .nav-group .flex.items-center.gap-2 {
+                display: none !important;
+            }
+
+            /* Keep the Model Performance link visible */
+            .nav-group a[href="arc.html"] {
+                display: flex !important;
+            }
+            
+            /* Bottom navigation/controls */
+            .mobile-model-select {
+                position: fixed;
+                bottom: 0;  /* Changed from 1rem to 0 */
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                padding: 0.75rem;
+                z-index: 49;
+                border-top: 1px solid rgba(99, 102, 241, 0.2);
+            }
+
+            .mobile-model-select select {
+                width: 100%;
+                padding: 0.75rem;
+                background: rgba(30, 41, 59, 0.8);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 0.5rem;
+                color: white;
+                font-size: 0.875rem;
+            }
+
+            .mobile-controls {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                border-top: 1px solid rgba(99, 102, 241, 0.2);
+                padding: 0.75rem;
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                align-items: center;
+                z-index: 50;
+            }
+
+            /* Floating action buttons - adjust position to be above model selector */
+            .mobile-fab-container {
+                position: fixed;
+                bottom: 90px;  /* Increased to be well above the model selector */
+                right: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                z-index: 51;
+            }
+
+            .mobile-fab {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: rgba(99, 102, 241, 0.9);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                color: white;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+                transition: all 0.3s ease;
+            }
+
+            .mobile-fab:active {
+                transform: scale(0.95);
+                background: rgba(99, 102, 241, 1);
+            }
+            
+            .mobile-fab.hidden {
+                display: none;
+            }
+
+            /* Add padding to main content to prevent content from being hidden */
+            main {
+                padding-bottom: calc(60px + 1rem) !important; /* Height of model selector + some padding */
             }
         }
 
@@ -318,6 +417,24 @@
             <div class="loading-dot"></div>
             <div class="loading-dot"></div>
         </div>
+        
+        <div class="mobile-fab-container md:hidden">
+            <button class="mobile-fab" id="mobileShuffleButton" onclick="handleShuffle()">
+                <i class="fas fa-random"></i>
+            </button>
+            <button class="mobile-fab hidden" id="mobileResetButton" onclick="handleReset()">
+                <i class="fas fa-rotate"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-model-select md:hidden">
+            <select id="mobileSourceSelector" onchange="handleSourceChange({ target: this })">
+                <option value="barc_gpt4_desc">GPT-4</option>
+                <option value="barc_gpt4o_mini_desc">GPT4o-mini</option>
+                <option value="barc_heavy">Heavy</option>
+                <option value="barc_heavy_suggest">Heavy with Suggestions</option>
+            </select>
+        </div>
     </main>
 
     <div class="custom-scrollbar">
@@ -411,12 +528,18 @@
                 state.shuffleCount === 1 ? state.originalExamples : state.shuffledExamples
             );
             
-            ui.shuffleButton.classList.add('shuffle-active');
+            // Show reset button (both desktop and mobile)
             ui.resetButton.classList.remove('hidden');
+            document.getElementById('mobileResetButton')?.classList.remove('hidden');
             
-            const icon = ui.shuffleButton.querySelector('i');
-            icon.classList.add('spin-animation');
-            setTimeout(() => icon.classList.remove('spin-animation'), 1000);
+            // Add spin animation
+            [ui.shuffleButton, document.getElementById('mobileShuffleButton')].forEach(button => {
+                if (button) {
+                    const icon = button.querySelector('i');
+                    icon.classList.add('spin-animation');
+                    setTimeout(() => icon.classList.remove('spin-animation'), 1000);
+                }
+            });
             
             loadMoreExamples();
         }
@@ -428,14 +551,18 @@
             state.shuffledExamples = [];
             ui.grid.innerHTML = '';
             
-            // Update UI
-            ui.shuffleButton.classList.remove('shuffle-active');
+            // Hide reset button (both desktop and mobile)
             ui.resetButton.classList.add('hidden');
+            document.getElementById('mobileResetButton')?.classList.add('hidden');
             
-            // Add spin animation to reset button
-            const icon = ui.resetButton.querySelector('i');
-            icon.classList.add('spin-animation');
-            setTimeout(() => icon.classList.remove('spin-animation'), 1000);
+            // Add spin animation
+            [ui.resetButton, document.getElementById('mobileResetButton')].forEach(button => {
+                if (button) {
+                    const icon = button.querySelector('i');
+                    icon.classList.add('spin-animation');
+                    setTimeout(() => icon.classList.remove('spin-animation'), 1000);
+                }
+            });
             
             loadMoreExamples();
         }
@@ -536,6 +663,10 @@
             state.shuffleCount = 0;
             state.shuffledExamples = [];
             ui.grid.innerHTML = '';
+            
+            // Sync both selectors
+            document.getElementById('sourceSelector').value = event.target.value;
+            document.getElementById('mobileSourceSelector').value = event.target.value;
             
             // Reset UI
             ui.shuffleButton.classList.remove('shuffle-active');
@@ -750,6 +881,13 @@
                         break;
                 }
             });
+
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                const mobileSourceSelector = document.getElementById('mobileSourceSelector');
+                if (mobileSourceSelector) {
+                    mobileSourceSelector.value = state.currentSource;
+                }
+            }
         }
 
         // Add performance optimizations
