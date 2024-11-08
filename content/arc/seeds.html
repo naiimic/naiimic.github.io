@@ -12,12 +12,13 @@
 	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/videogame-favicon-16x16.png" sizes="16x16">
 	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/videogame-favicon-32x32.png" sizes="32x32">
     
-    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
         /* Base Styles */
         body {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -25,6 +26,8 @@
             font-family: 'Space Grotesk', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
+            width: 100%;
+            position: relative;
         }
 
         /* Hide Scrollbar */
@@ -726,6 +729,7 @@
             }
         }
 
+        /* Desktop Scaling (80%) */
         @media (min-width: 769px) {
             /* Container width */
             .container {
@@ -802,10 +806,28 @@
                 gap: 0.4rem !important;
             }
 
+            /* Seeds dropdown */
+            .seeds-content {
+                min-width: 160px !important; /* 80% of original */
+                padding: 0.4rem !important;
+                margin-top: 0.4rem !important;
+            }
+
+            .seed-link {
+                padding: 0.4rem !important;
+                font-size: 0.9rem !important;
+            }
+
+            /* Source selector */
+            #sourceSelector {
+                transform: scale(0.8);
+                transform-origin: right center;
+                min-width: 160px !important; /* 80% of 200px */
+            }
+
             /* Info panel scaling */
             .info-panel-wrapper {
                 width: 25.6rem !important; /* 80% of 32rem */
-                bottom: 1.6rem !important; /* 80% of 2rem */
             }
 
             .info-toggle {
@@ -824,13 +846,6 @@
                 font-size: 1.4rem !important; /* 80% of 1.75rem */
             }
 
-            /* Filter indicator */
-            #filterIndicator {
-                height: 32px !important; /* 80% of 40px */
-                font-size: 0.9rem !important;
-                padding: 0 0.8rem !important;
-            }
-
             /* Grid gaps */
             .gap-6 {
                 gap: 1.2rem !important; /* 80% of 1.5rem */
@@ -847,27 +862,6 @@
 
             .p-6 {
                 padding: 1.2rem !important; /* 80% of 1.5rem */
-            }
-
-            /* Image wrapper */
-            .image-wrapper {
-                padding: 0.2rem !important; /* 80% of 0.25rem */
-            }
-
-            /* Image caption */
-            .image-caption {
-                font-size: 0.7rem !important; /* 80% of 0.875rem */
-                margin-top: 0.4rem !important;
-            }
-
-            /* Custom scrollbar */
-            .custom-scrollbar {
-                width: 10px !important; /* 80% of 12px */
-                top: 96px !important; /* 80% of 120px */
-            }
-
-            .scrollbar-thumb {
-                min-height: 32px !important; /* 80% of 40px */
             }
         }
     </style>
