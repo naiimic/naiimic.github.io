@@ -12,10 +12,11 @@
 	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/videogame-favicon-16x16.png" sizes="16x16">
 	<link rel="icon" type="image/png" href="https://naiimic.github.io/favicons/videogame-favicon-32x32.png" sizes="32x32">
     
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    
+
     <style>
         /* Base Styles */
         body {
@@ -722,6 +723,151 @@
         @media (max-width: 768px) {
             .info-toggle {
                 display: none !important;
+            }
+        }
+
+        @media (min-width: 769px) {
+            /* Container width */
+            .container {
+                max-width: 80% !important;
+            }
+
+            /* Text scaling */
+            .text-2xl {
+                font-size: 1.2rem !important; /* 80% of 1.5rem */
+            }
+            
+            .text-3xl {
+                font-size: 1.6rem !important; /* 80% of 2rem */
+            }
+
+            /* Button and input scaling */
+            .gradient-btn {
+                height: 32px !important; /* 80% of 40px */
+                min-width: 80px !important; /* 80% of 100px */
+                padding: 0 1rem !important; /* 80% of 1.25rem */
+                font-size: 0.9rem !important;
+            }
+
+            /* Examples grid scaling */
+            .examples-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; /* 80% of 350px */
+                gap: 1.6rem !important; /* 80% of 2rem */
+                padding: 0.8rem !important; /* 80% of 1rem */
+            }
+
+            /* Card scaling */
+            .example-card {
+                font-size: 0.9rem !important;
+            }
+
+            .card-header {
+                height: 56px !important; /* 80% of 70px */
+                padding: 0.8rem 1.2rem !important; /* 80% of padding */
+            }
+
+            /* Code content scaling */
+            .code-content {
+                top: 56px !important; /* 80% of header height */
+            }
+
+            .code-content pre code {
+                font-size: 0.6rem !important; /* 80% of 0.75rem */
+            }
+
+            /* Image grid scaling */
+            .image-grid {
+                gap: 0.8rem !important; /* 80% of 1rem */
+                padding: 0 1.2rem 1.2rem !important; /* 80% of padding */
+                margin-top: 56px !important; /* 80% of 70px */
+            }
+
+            .image-container {
+                padding: 0.8rem !important; /* 80% of 1rem */
+            }
+
+            .image-pair {
+                gap: 0.8rem !important; /* 80% of 1rem */
+            }
+
+            /* Source overview cards */
+            .source-card {
+                padding: 1.2rem !important; /* 80% of 1.5rem */
+            }
+
+            /* Button base */
+            .button-base {
+                padding: 0.4rem 0.8rem !important; /* 80% of padding */
+                font-size: 0.9rem !important;
+                gap: 0.4rem !important;
+            }
+
+            /* Info panel scaling */
+            .info-panel-wrapper {
+                width: 25.6rem !important; /* 80% of 32rem */
+                bottom: 1.6rem !important; /* 80% of 2rem */
+            }
+
+            .info-toggle {
+                padding: 0.6rem !important;
+                border-radius: 0.6rem !important;
+                bottom: 1.6rem !important;
+                left: 1.6rem !important;
+            }
+
+            /* Stats overview */
+            .text-xl {
+                font-size: 1.2rem !important; /* 80% of 1.5rem */
+            }
+
+            .text-2xl {
+                font-size: 1.4rem !important; /* 80% of 1.75rem */
+            }
+
+            /* Filter indicator */
+            #filterIndicator {
+                height: 32px !important; /* 80% of 40px */
+                font-size: 0.9rem !important;
+                padding: 0 0.8rem !important;
+            }
+
+            /* Grid gaps */
+            .gap-6 {
+                gap: 1.2rem !important; /* 80% of 1.5rem */
+            }
+
+            .gap-4 {
+                gap: 0.8rem !important; /* 80% of 1rem */
+            }
+
+            /* Spacing */
+            .mb-8 {
+                margin-bottom: 1.6rem !important; /* 80% of 2rem */
+            }
+
+            .p-6 {
+                padding: 1.2rem !important; /* 80% of 1.5rem */
+            }
+
+            /* Image wrapper */
+            .image-wrapper {
+                padding: 0.2rem !important; /* 80% of 0.25rem */
+            }
+
+            /* Image caption */
+            .image-caption {
+                font-size: 0.7rem !important; /* 80% of 0.875rem */
+                margin-top: 0.4rem !important;
+            }
+
+            /* Custom scrollbar */
+            .custom-scrollbar {
+                width: 10px !important; /* 80% of 12px */
+                top: 96px !important; /* 80% of 120px */
+            }
+
+            .scrollbar-thumb {
+                min-height: 32px !important; /* 80% of 40px */
             }
         }
     </style>

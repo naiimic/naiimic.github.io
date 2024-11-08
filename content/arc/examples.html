@@ -775,6 +775,142 @@
             border-color: #6366f1;
             box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
         }
+
+        /* Desktop Scaling (80%) */
+        @media (min-width: 769px) {
+            /* Container width */
+            .container {
+                max-width: 80% !important;
+            }
+
+            /* Text scaling */
+            .text-2xl {
+                font-size: 1.2rem !important; /* 80% of 1.5rem */
+            }
+            
+            .text-3xl {
+                font-size: 1.6rem !important; /* 80% of 2rem */
+            }
+
+            /* Button and input scaling */
+            .gradient-btn {
+                height: 32px !important; /* 80% of 40px */
+                min-width: 80px !important; /* 80% of 100px */
+                padding: 0 1rem !important; /* 80% of 1.25rem */
+                font-size: 0.9rem !important;
+            }
+
+            /* Examples grid scaling */
+            .examples-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; /* 80% of 350px */
+                gap: 1.6rem !important; /* 80% of 2rem */
+                padding: 0.8rem !important; /* 80% of 1rem */
+            }
+
+            /* Card scaling */
+            .example-card {
+                font-size: 0.9rem !important;
+            }
+
+            .card-header {
+                height: 56px !important; /* 80% of 70px */
+                padding: 0.8rem 1.2rem !important; /* 80% of padding */
+            }
+
+            /* Code content scaling */
+            .code-content {
+                top: 56px !important; /* 80% of header height */
+            }
+
+            .code-content pre code {
+                font-size: 0.6rem !important; /* 80% of 0.75rem */
+            }
+
+            /* Image grid scaling */
+            .image-grid {
+                gap: 0.8rem !important; /* 80% of 1rem */
+                padding: 0 1.2rem 1.2rem !important; /* 80% of padding */
+                margin-top: 56px !important; /* 80% of 70px */
+            }
+
+            .image-container {
+                padding: 0.8rem !important; /* 80% of 1rem */
+            }
+
+            .image-pair {
+                gap: 0.8rem !important; /* 80% of 1rem */
+            }
+
+            /* Source overview cards */
+            .source-card {
+                padding: 1.2rem !important; /* 80% of 1.5rem */
+            }
+
+            /* Button base */
+            .button-base {
+                padding: 0.4rem 0.8rem !important; /* 80% of padding */
+                font-size: 0.9rem !important;
+                gap: 0.4rem !important;
+            }
+
+            /* Seeds dropdown */
+            .seeds-content {
+                min-width: 160px !important; /* 80% of original */
+                padding: 0.4rem !important;
+                margin-top: 0.4rem !important;
+            }
+
+            .seed-link {
+                padding: 0.4rem !important;
+                font-size: 0.9rem !important;
+            }
+
+            /* Source selector */
+            #sourceSelector {
+                transform: scale(0.8);
+                transform-origin: right center;
+                min-width: 160px !important; /* 80% of 200px */
+            }
+
+            /* Info panel scaling */
+            .info-panel-wrapper {
+                width: 25.6rem !important; /* 80% of 32rem */
+            }
+
+            .info-toggle {
+                padding: 0.6rem !important;
+                border-radius: 0.6rem !important;
+                bottom: 1.6rem !important;
+                left: 1.6rem !important;
+            }
+
+            /* Stats overview */
+            .text-xl {
+                font-size: 1.2rem !important; /* 80% of 1.5rem */
+            }
+
+            .text-2xl {
+                font-size: 1.4rem !important; /* 80% of 1.75rem */
+            }
+
+            /* Grid gaps */
+            .gap-6 {
+                gap: 1.2rem !important; /* 80% of 1.5rem */
+            }
+
+            .gap-4 {
+                gap: 0.8rem !important; /* 80% of 1rem */
+            }
+
+            /* Spacing */
+            .mb-8 {
+                margin-bottom: 1.6rem !important; /* 80% of 2rem */
+            }
+
+            .p-6 {
+                padding: 1.2rem !important; /* 80% of 1.5rem */
+            }
+        }
     </style>
 </head>
 <body class="antialiased">
