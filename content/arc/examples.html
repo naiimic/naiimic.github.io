@@ -338,21 +338,22 @@
 
         .copy-toast {
             position: fixed;
-            top: 2rem;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(34, 197, 94, 0.9);
+            background: rgba(16, 185, 129, 0.9);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            animation: fade 1.5s forwards;
+            padding: 8px 16px;
+            border-radius: 4px;
+            z-index: 9999;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeInOut 1.5s ease forwards;
         }
 
-        @keyframes fade {
-            0% { opacity: 0; transform: translate(-50%, -20px); }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, 20px); }
             15% { opacity: 1; transform: translate(-50%, 0); }
             85% { opacity: 1; transform: translate(-50%, 0); }
             100% { opacity: 0; transform: translate(-50%, -20px); }
@@ -1009,7 +1010,7 @@
                 
                 <div class="info-section">
                     <p class="text-slate-300 mb-4">
-                        The Abstraction and Reasoning Corpus (ARC) is a dataset that measures general fluid intelligence in AI systems. It consists of tasks where the AI must infer a pattern from a few examples and apply it to new situations.
+                        The <a href="https://arcprize.org/" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline">Abstraction and Reasoning Corpus (ARC)</a> is a dataset that measures general fluid intelligence in AI systems. It consists of tasks where the AI must infer a pattern from a few examples and apply it to new situations.
                     </p>
                     
                     <p class="text-slate-300 mb-4">
@@ -1038,10 +1039,10 @@
                     <div class="mt-6 p-4 bg-slate-800/50 rounded-lg">
                         <p class="text-slate-300">
                             For implementation details about the models and evaluation process, visit:
-                            <a href="https://github.com/xu3kev/BARC/blob/master/seeds/common.py" 
-                               class="text-indigo-400 hover:text-indigo-300 underline break-all" 
-                               target="_blank">
-                                github.com/xu3kev/BARC/blob/master/seeds/common.py
+                            <a href="https://github.com/xu3kev/BARC/tree/master" 
+                                class="text-indigo-400 hover:text-indigo-300 underline break-all" 
+                                target="_blank">
+                                    BARC
                             </a>
                         </p>
                     </div>
@@ -1221,14 +1222,20 @@
         }
 
         function showToast(message, isError = false) {
+            // Remove any existing toasts
+            const existingToasts = document.querySelectorAll('.copy-toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            // Create new toast
             const toast = document.createElement('div');
-            toast.className = 'copy-toast';
+            toast.className = `copy-toast ${isError ? 'error' : ''}`;
             toast.textContent = message;
-            if (isError) {
-                toast.style.background = 'rgba(239, 68, 68, 0.9)';
-            }
+            
+            // Add to DOM
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 1500);
+            
+            // Remove after animation completes
+            toast.addEventListener('animationend', () => toast.remove());
         }
 
         function copyToClipboard(text, button) {
