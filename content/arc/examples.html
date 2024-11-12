@@ -338,7 +338,7 @@
 
         .copy-toast {
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(16, 185, 129, 0.9);
@@ -349,7 +349,7 @@
             font-size: 14px;
             font-weight: 500;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            animation: fadeInOut 1.5s ease forwards;
+            animation: fadeInOut 2s ease forwards;
         }
 
         @keyframes fadeInOut {
@@ -1023,7 +1023,7 @@
                     </ul>
                     
                     <p class="text-slate-300 mb-4">
-                        This page showcases different transduction models attempting to solve the ARC validation set. For each task, models generate multiple candidate solutions, which are ranked based on various strategies including test-time fine-tuning and reranking approaches.
+                        This page showcases different transduction / induction models attempting to solve the ARC validation set. For each task, models generate multiple candidate solutions, which are ranked based on various strategies including test-time fine-tuning and reranking approaches.
                     </p>
         
                     <p class="text-slate-300 mb-4">
@@ -1038,11 +1038,10 @@
         
                     <div class="mt-6 p-4 bg-slate-800/50 rounded-lg">
                         <p class="text-slate-300">
-                            For implementation details about the models and evaluation process, visit:
-                            <a href="https://github.com/xu3kev/BARC/tree/master" 
-                                class="text-indigo-400 hover:text-indigo-300 underline break-all" 
-                                target="_blank">
-                                    BARC
+                            For implementation details about the models and evaluation process, visit  <a href="https://github.com/xu3kev/BARC/tree/master" 
+                            class="text-indigo-400 hover:text-indigo-300 underline break-all" 
+                            target="_blank">
+                                BARC
                             </a>
                         </p>
                     </div>
