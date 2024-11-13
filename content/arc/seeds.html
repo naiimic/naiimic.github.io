@@ -873,13 +873,32 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col gap-4 py-3">
                 <!-- Top Row - Title -->
-                <div class="flex justify-center">
-                    <h1 class="text-2xl md:text-3xl font-bold logo-gradient">ARC Seed Tasks</h1>
+                <div class="w-full text-center space-y-2">
+                    <h1 class="text-2xl md:text-3xl font-bold logo-gradient">ARC Seeds</h1>
+                    <div class="flex items-center justify-center gap-4 text-sm">
+                        <a href="https://arxiv.org/abs/2411.02272" 
+                           class="flex items-center gap-2 text-indigo-400 hover:text-pink-400 transition-colors duration-300"
+                           target="_blank">
+                            <i class="fas fa-file-alt"></i>
+                            <span class="border-b border-indigo-400/30 hover:border-pink-400">Paper</span>
+                        </a>
+                        <span class="text-slate-500">|</span>
+                        <a href="https://github.com/xu3kev/BARC" 
+                           class="flex items-center gap-2 text-indigo-400 hover:text-pink-400 transition-colors duration-300"
+                           target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span class="border-b border-indigo-400/30 hover:border-pink-400">Github</span>
+                        </a>
+                    </div>
                 </div>
                 
                 <!-- Bottom Row - Controls -->
                 <div class="flex justify-between items-center">
                     <div class="nav-group">
+                        <a href="arc.html" class="gradient-btn px-4 py-2 rounded-lg">
+                            <i class="fas fa-cube mr-2"></i>
+                            <span>Model Performance</span>
+                        </a>
                         <a href="examples.html" class="gradient-btn px-4 py-2 rounded-lg">
                             <i class="fas fa-lightbulb mr-2"></i>
                             <span>Synthetic Examples</span>
@@ -943,47 +962,43 @@
 
         <div class="info-panel-wrapper">
             <div id="infoDisplay" class="info-panel">
-                <h3 class="text-xl font-bold mb-4 logo-gradient">About the ARC Challenge</h3>
-                
+                <h3 class="text-xl logo-gradient">About ARC Seeds</h3>
+        
                 <div class="info-section">
                     <p class="text-slate-300 mb-4">
-                        The <a href="https://arcprize.org/" target="_blank" class="text-indigo-400 hover:text-indigo-300 underline">Abstraction and Reasoning Corpus (ARC)</a> is a dataset that measures general fluid intelligence in AI systems. It consists of tasks where the AI must infer a pattern from a few examples and apply it to new situations.
+                        This page displays the seed examples from the ARC (Abstraction and Reasoning Corpus) training dataset that were used to generate synthetic examples in the BARC framework. These seeds serve as inspiration for generating new, similar reasoning tasks.
                     </p>
                     
                     <p class="text-slate-300 mb-4">
-                        Each task contains:
+                        Each seed example shows:
                     </p>
-                    <ul class="list-disc list-inside text-slate-300 mb-4 space-y-2">
-                        <li>Training examples showing input-output pairs that demonstrate the pattern</li>
-                        <li>A test input where the AI must predict the correct output</li>
-                        <li>The ground truth test output for evaluation</li>
+                    <ul class="list-disc text-slate-300 mb-4 space-y-2">
+                        <li>Training pairs demonstrating the pattern or transformation</li>
+                        <li>Test input and expected output</li>
+                        <li>Python code implementing the solution</li>
+                        <li>Unique identifier for referencing in synthetic examples</li>
                     </ul>
                     
                     <p class="text-slate-300 mb-4">
-                        This page showcases different transduction / induction models attempting to solve the ARC validation set. For each task, models generate multiple candidate solutions, which are ranked based on various strategies including test-time fine-tuning and reranking approaches.
+                        Key Features:
                     </p>
-        
-                    <p class="text-slate-300 mb-4">
-                        The visualization allows you to:
-                    </p>
-                    <ul class="list-disc list-inside text-slate-300 mb-4 space-y-2">
-                        <li>Compare different model variants and their performance</li>
-                        <li>View training examples and test cases</li>
-                        <li>Examine candidate solutions generated by the models</li>
-                        <li>Track success rates and solution rankings</li>
+                    <ul class="list-disc text-slate-300 mb-4 space-y-2">
+                        <li>View the original ARC tasks used as seeds</li>
+                        <li>Examine the human-written solutions that explain each pattern</li>
+                        <li>Copy and run the solution code</li>
+                        <li>Shuffle examples to explore different patterns</li>
+                        <li>Filter seeds to see specific examples</li>
                     </ul>
-        
-                    <div class="mt-6 p-4 bg-slate-800/50 rounded-lg">
-                        <p class="text-slate-300">
-                            For implementation details about the models and evaluation process, visit  <a href="https://github.com/xu3kev/BARC/tree/master" 
-                               class="text-indigo-400 hover:text-indigo-300 underline break-all" 
-                               target="_blank">
-                                BARC</a>. For detailed analysis of induction vs transduction approaches, see <a href="https://www.cs.cornell.edu/~ellisk/documents/arc_induction_vs_transduction.pdf"
-                            class="text-indigo-400 hover:text-indigo-300 underline break-all"
-                            target="_blank">
-                            our paper</a>.
-                        </p>
-                    </div>
+
+                    <p class="text-slate-300 mb-4">
+                        Navigation:
+                    </p>
+                    <ul class="list-disc text-slate-300 space-y-2">
+                        <li>Click "Model Performance" to see how different models solve ARC tasks</li>
+                        <li>Visit "Synthetic Examples" to see how these seeds are used to generate new tasks</li>
+                        <li>Use the shuffle button to randomize the display order</li>
+                        <li>Click the code button on any example to view its implementation</li>
+                    </ul>
                 </div>
             </div>
         </div>
