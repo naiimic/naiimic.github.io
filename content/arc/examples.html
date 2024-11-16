@@ -1301,7 +1301,12 @@
 
         function createExampleCard(example) {
             const codeHtml = example.code ? example.code.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
-            const rawCode = example.code ? example.code.replace(/`/g, '\\`').replace(/\${/g, '\\${') : '';
+            const rawCode = example.code ? example.code
+                .replace(/\\/g, '\\\\')  // Escape backslashes first
+                .replace(/"/g, '&quot;') // Escape quotes
+                .replace(/`/g, '\\`')    // Escape backticks
+                .replace(/\${/g, '\\${') // Escape template literal syntax
+                : '';
             
             return `
                 <div class="card-container" id="card-${example.index}">
@@ -1371,7 +1376,6 @@
                         </div>
                         <div class="card-back">
                             <div class="card-header">
-                                <!-- Change the onclick to use a data attribute instead -->
                                 <button class="button-base copy-button" data-code="${rawCode}">
                                     <i class="fas fa-copy"></i>
                                     <span>Copy</span>
