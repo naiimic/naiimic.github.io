@@ -1169,9 +1169,6 @@ body {
     font-size: 14px;
     color: var(--text-secondary);
     text-align: center;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
 }
 
 .logo-link {
