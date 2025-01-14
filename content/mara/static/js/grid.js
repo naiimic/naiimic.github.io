@@ -312,7 +312,7 @@ async function loadPrograms() {
     for (const programName of programNames) {
         try {
             // Load the video JSON file to get program metadata
-            const response = await fetch(`../static/data/video/${programName}.json`);
+            const response = await fetch(`../mara/static/data/video/${programName}.json`);
             if (!response.ok) continue;
             
             const videoData = await response.json();
@@ -840,7 +840,7 @@ async function fetchFrame(idx) {
     if (!state.currentProgramId) return;
     
     try {
-        const response = await fetch(`/static/data/video/${state.currentProgramId}.json`);
+        const response = await fetch(`/mara/static/data/video/${state.currentProgramId}.json`);
         if (!response.ok) throw new Error('Failed to load video data');
         
         const videoData = await response.json();
@@ -1415,12 +1415,12 @@ async function loadSpecificProgram(programId) {
 
     try {
         // Load the program's SEXP file
-        const sexpResponse = await fetch(`../static/data/game/${programId}.sexp`);
+        const sexpResponse = await fetch(`../mara/static/data/game/${programId}.sexp`);
         if (!sexpResponse.ok) throw new Error(`Failed to load program ${programId}`);
         const programContent = await sexpResponse.text();
 
         // Load the video JSON file
-        const videoResponse = await fetch(`../static/data/video/${programId}.json`);
+        const videoResponse = await fetch(`../mara/static/data/video/${programId}.json`);
         if (!videoResponse.ok) throw new Error(`Failed to load video data for ${programId}`);
         const videoData = await videoResponse.json();
 
