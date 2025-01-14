@@ -1161,6 +1161,19 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+.text-display {
+    width: 100%;
+    min-height: 50px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
 .logo-link {
     text-decoration: none;
     cursor: pointer;
