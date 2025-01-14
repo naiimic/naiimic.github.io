@@ -67,7 +67,7 @@ function createTable() {
 
 async function showAIGameplay(programId) {
     try {
-        const response = await fetch(`./static/data/ai/agent_${programId}.json`);
+        const response = await fetch(`../mara/static/data/ai/agent_${programId}.json`);
         videoData = await response.json();
         
         // Hide plot container
