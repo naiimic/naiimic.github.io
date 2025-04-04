@@ -16,7 +16,9 @@
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
    <link rel="stylesheet" href="css/layouts/blog.css">
+   <link rel="stylesheet" href="content/onebillion/calculator.css">
    <script type="text/javascript" src="processing.js"></script>
+   <script type="text/javascript" src="content/onebillion/calculator.js"></script>
 
    <!-- Math part -->
    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -43,6 +45,9 @@
 		</a>
 		<a onclick="closeNav()" href="#pulse">
 			<i class="fas fa-music icon-color"></i> pulse: audio streaming
+		</a>
+		<a onclick="closeNav()" href="#billionSeconds">
+			<i class="fas fa-clock icon-color"></i> billion seconds calculator
 		</a>
 		<a onclick="closeNav()" href="#hwm">
 			<i class="fas fa-calculator icon-color"></i> math conjecture: high-water marks
@@ -200,8 +205,6 @@
 							Since that day, with the help of other people, I started collecting data for fun. In 2017, I had an excel sheet with <b>10898</b> different samples.
 						</p>
 						<p><img class="post-images" alt="" src="content/clementines/mandarini.png"></p>
-						<!-- You can add the following line to create an horizontal line with different colors, you can automatically update it in template.. -->
-						<!-- <div style = 'height:30px; background: -webkit-linear-gradient(left,rgba(255, 0, 40, 1) 0%,rgba(255, 0, 40, 1) 28%,rgba(255, 88, 0, 1) 28%,rgba(255, 88, 0, 1) 32%,rgba(205, 255, 0, 1) 32%,rgba(205, 255, 0, 1) 33%,rgba(118, 255, 0, 1) 33%,rgba(118, 255, 0, 1) 42%,rgba(75, 255, 0, 1) 42%,rgba(75, 255, 0, 1) 66%,rgba(32, 255, 0, 1) 66%,rgba(32, 255, 0, 1) 68%,rgba(0, 255, 139, 1) 68%,rgba(0, 255, 139, 1) 74%,rgba(0, 241, 255, 1) 74%,rgba(0, 241, 255, 1) 89%,rgba(0, 67, 255, 1) 89%,rgba(0, 67, 255, 1) 100%);'> -->
 					</div>
 					</section>
 				</div>
@@ -226,6 +229,34 @@
 							<p>
 								<a class="btn btndarkyellow" href="https://473999.net/pulse" target="_blank">Start streaming</a>
 							</p>
+						</div>
+					</section>
+				</div>
+
+				<div class="posts" id="billionSeconds">
+					<h1 class="content-subhead">Billion seconds calculator</h1>
+					<section class="post">
+						<div class="post-description">
+							<p>
+								Have you ever wondered when you'll be exactly 1 billion seconds old? One billion is a huge number - it takes about 31.7 years to reach this milestone!
+							</p>
+							<div class="calculator-container">
+								<div class="calculator-form">
+									<div class="form-group">
+										<label for="birthdate">Your birthdate:</label>
+										<input type="date" id="birthdate">
+									</div>
+									<div class="form-group">
+										<label for="birthtime">Time (optional):</label>
+										<input type="time" id="birthtime">
+									</div>
+									<div class="calc-buttons">
+										<button id="calculateBtn" onclick="calculateBillionSeconds()" class="btn btndarkyellow" disabled>Calculate</button>
+										<button id="resetBtn" class="btn-reset" title="Reset form"><i class="fas fa-redo-alt"></i></button>
+									</div>
+								</div>
+								<div id="result"></div>
+							</div>
 						</div>
 					</section>
 				</div>
