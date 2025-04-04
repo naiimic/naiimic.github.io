@@ -402,3 +402,9 @@ input, select, textarea {
         /* bottom: 0; */
     }
 }
+
+@media screen and (max-width: 768px) {
+    .mobile-hidden {
+        display: none !important;
+    }
+}

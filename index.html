@@ -55,7 +55,7 @@
 		<a onclick="closeNav()" href="#riddle">
 			<i class="fas fa-bacteria icon-color"></i> math riddle
 		</a>
-		<a onclick="closeNav()" href="#miceMaze">
+		<a onclick="closeNav()" href="#miceMaze" class="mobile-hidden">
 			<i class="fas fa-paw icon-color"></i> mice maze game
 		</a>
 		<a onclick="closeNav()" href="#exercisesAI">
@@ -120,9 +120,14 @@
 
 			if(isMobileDevice()) {
 				// console.log("The device is mobile.");
-
 				hCanvas.style.display = "none";
 				vCanvas.style.display = "block";
+				
+				// Hide mice maze section and its table of contents entry on mobile
+				var miceMazeSection = document.getElementById("miceMaze");
+				var miceMazeLink = document.querySelector('a[href="#miceMaze"]');
+				if (miceMazeSection) miceMazeSection.style.display = "none";
+				if (miceMazeLink) miceMazeLink.style.display = "none";
 			} else {
 				hCanvas.style.display = "block";
 				vCanvas.style.display = "none";
@@ -346,7 +351,7 @@
 							</i>
 						</p>
 						<p>
-							<a class="btn btndarkyellow" href="content/maze/maze.html" target="_blank">PLAY! (browser only)</a>
+							<a class="btn btndarkyellow" href="content/maze/maze.html" target="_blank">PLAY!</a>
 						</p>
 					</div>
 					</section>
