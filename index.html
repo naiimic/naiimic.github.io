@@ -82,30 +82,54 @@
 	</div>
 
 	<div id="main">
-		<button class="openbtn" onclick="openNav()"><i class="fas fa-bars" style="font-size: 0.8em;"></i> Table of contents</button>  
+		<div class="navbar-content">
+			<button class="openbtn" onclick="openNav()"><i class="fas fa-bars" style="font-size: 0.8em;"></i> Table of contents</button>
+		</div>
 	</div>
 
+	<!-- Mobile overlay -->
+	<div id="mobileOverlay" class="mobile-overlay"></div>
+
 	<script>
-		function openNav() {
-		  document.getElementById("mySidebar").style.width = "250px";
-		  document.getElementById("main").style.display = "none";
+			function openNav() {
+	  document.getElementById("mySidebar").style.width = "250px";
+	  document.getElementById("main").style.display = "none";
+	  
+	  // Mobile overlay functionality
+	  if (window.innerWidth <= 768) {
+	    document.getElementById("mobileOverlay").classList.add("active");
+	    document.body.classList.add("sidebar-open");
+	  }
+	}
+	
+	function closeNav() {
+	  document.getElementById("mySidebar").style.width = "0";
+	  document.getElementById("main").style.display = "initial";
+	  
+	  // Remove mobile overlay
+	  document.getElementById("mobileOverlay").classList.remove("active");
+	  document.body.classList.remove("sidebar-open");
+	  
+	  setTimeout(function(){
+			history.replaceState({}, document.title, window.location.href.split('#')[0]);
+		}, 500);
+	}
+
+			document.onclick = function (e) {
+		const sidebar = document.getElementById('mySidebar');
+		const openBtn = document.querySelector('.openbtn');
+		const overlay = document.getElementById('mobileOverlay');
+		
+		// Don't close if clicking on the sidebar itself or the open button
+		if (sidebar.contains(e.target) || openBtn.contains(e.target)) {
+			return;
 		}
 		
-		function closeNav() {
-		  document.getElementById("mySidebar").style.width = "0";
-		  document.getElementById("main").style.display = "initial";
-		  setTimeout(function(){
-				history.replaceState({}, document.title, window.location.href.split('#')[0]);
-			}, 500);
+		// Close sidebar if it's open and click is outside (or on overlay)
+		if (sidebar.style.width === '250px') {
+			closeNav();
 		}
-
-		document.onclick = function (e) {
-			if (e.target.id !== 'mySidebar'){
-				if (e.target.offsetParent && e.target.offsetParent.id !== 'mySidebar'){
-					closeNav();
-				}
-			}
-		}
+	}
 
 		function isMobileDevice() {
 			var hasOrientation = typeof window.orientation !== "undefined";
