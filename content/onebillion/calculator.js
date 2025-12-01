@@ -26,8 +26,13 @@ function calculateBillionSeconds() {
         minute: 'numeric'
     };
     
+    const now = new Date();
+    const isPast = billionSecondsDate < now;
+    
+    const message = isPast ? "You were 1 billion seconds old on:" : "You will be 1 billion seconds old on:";
+    
     document.getElementById('result').innerHTML = 
-        "<div>You will be 1 billion seconds old on:</div>" + 
+        "<div>" + message + "</div>" + 
         "<div class='billion-result'>" + billionSecondsDate.toLocaleDateString(undefined, options) + "</div>";
 }
 
